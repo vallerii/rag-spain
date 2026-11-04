@@ -414,7 +414,7 @@ export default function ReportEditor({ c, onPublished }: { c: Check; onPublished
                         <thead><tr style={{ color: muted, textAlign: 'left' }}><th>#</th><th>Unternehmen</th><th>★</th><th>Bewertungen</th><th>Website</th></tr></thead>
                         <tbody>
                           {audit.competitors.list.slice(0, 8).map((x, i) => (
-                            <tr key={x.id} style={{ borderTop: `1px solid ${line}`, fontWeight: i + 1 === audit.competitors!.rank ? 700 : 400, backgroundColor: i + 1 === audit.competitors!.rank ? '#EEEBFF' : undefined }}>
+                            <tr key={x.id} style={{ borderTop: `1px solid ${line}`, fontWeight: i + 1 === audit.competitors!.rank ? 700 : 400, backgroundColor: i + 1 === audit.competitors!.rank ? '#FDEBEC' : undefined }}>
                               <td>{i + 1}</td><td data-no-translate>{x.name}</td><td>{x.rating ?? '—'}</td><td>{x.reviews}</td><td>{x.website ? 'ja' : 'nein'}</td>
                             </tr>
                           ))}
@@ -581,7 +581,7 @@ export default function ReportEditor({ c, onPublished }: { c: Check; onPublished
               </div>
             ) : (
               <>
-                {!!c.wish?.length && <p style={{ ...small, margin: 0, padding: '8px 12px', borderRadius: 10, backgroundColor: '#EEEBFF', color: 'var(--ink)' }}>Kunde wünscht (Auswahl auf /preise): <strong>{c.wish.map(i => i.name).join(' + ')}</strong>, vorausgefüllt, bei Bedarf anpassen.</p>}
+                {!!c.wish?.length && <p style={{ ...small, margin: 0, padding: '8px 12px', borderRadius: 10, backgroundColor: '#FDEBEC', color: 'var(--ink)' }}>Kunde wünscht (Auswahl auf /preise): <strong>{c.wish.map(i => i.name).join(' + ')}</strong>, vorausgefüllt, bei Bedarf anpassen.</p>}
                 <OfferBuilder items={items} onChange={x => { setItems(x); upd(y => ({ ...y, offerDraft: { items: x, why } })) }} />
                 <textarea value={why} onChange={e => { const w = e.target.value; setWhy(w); upd(y => ({ ...y, offerDraft: { items, why: w } })) }} style={{ ...input, minHeight: 56, resize: 'vertical' }} placeholder="Warum genau das: 1–2 Sätze für den Kunden, auf Deutsch (optional)" />
               </>
