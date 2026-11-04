@@ -84,7 +84,7 @@ export default function CompanySearch({ variant = 'hero', initial = '', autoFocu
           {!error && results && results.map((r, i) => (
             <button key={r.id} type="button" onClick={() => goToCheck({ place: r.id })} className="ck-result"
               style={{ display: 'flex', gap: 16, alignItems: 'center', width: '100%', padding: '24px 20px', border: 'none', borderTop: i ? '1px solid var(--line-soft)' : 'none', backgroundColor: '#fff', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', color: 'var(--ink)' }}>
-              <span style={{ width: 34, height: 34, borderRadius: 10, backgroundColor: '#EEEBFF', color: 'var(--electric)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><PinIcon /></span>
+              <span style={{ width: 34, height: 34, borderRadius: 10, backgroundColor: '#FDEBEC', color: 'var(--electric)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><PinIcon /></span>
               <span style={{ flex: 1, minWidth: 0 }}>
                 <span style={{ display: 'block', fontWeight: 600, fontSize: 14.5, lineHeight: 1.35, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.main}</span>
                 <span style={{ display: 'block', fontSize: 12.5, color: 'var(--muted)', lineHeight: 1.45, marginTop: 6, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.secondary}</span>
