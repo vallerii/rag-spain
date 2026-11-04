@@ -39,7 +39,7 @@ function Avatar({ cx, cy, r = 18, bg = '#ede9fe', border = '#c4b5fd', label = 'M
       <circle cx={cx} cy={cy} r={r + 2} fill="white" opacity="0.7" />
       <circle cx={cx} cy={cy} r={r} fill={bg} stroke={border} strokeWidth="1.2" />
       <text x={cx} y={cy + fontSize * 0.38} textAnchor="middle" fontSize={fontSize} fontWeight="700"
-        fill="#2600FF" fontFamily="Satoshi, 'RAG Cyrillic Sans', Inter, sans-serif">{label}</text>
+        fill="#D71920" fontFamily="Satoshi, 'RAG Cyrillic Sans', Inter, sans-serif">{label}</text>
     </g>
   )
 }
@@ -62,7 +62,7 @@ function PinIcon({ cx, cy, scale = 1 }: { cx: number; cy: number; scale?: number
   const s = scale
   return (
     <g transform={`translate(${cx - 9 * s}, ${cy - 20 * s}) scale(${s})`}>
-      <path d="M9 0C4.03 0 0 4.03 0 9c0 6.75 9 19 9 19s9-12.25 9-19C18 4.03 13.97 0 9 0z" fill="#2600FF" />
+      <path d="M9 0C4.03 0 0 4.03 0 9c0 6.75 9 19 9 19s9-12.25 9-19C18 4.03 13.97 0 9 0z" fill="#D71920" />
       <circle cx="9" cy="9" r="3.5" fill="white" />
     </g>
   )
@@ -97,8 +97,8 @@ function IllustConnected() {
         <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#c4b5fd" strokeWidth="1.5" strokeDasharray="3 2" strokeLinecap="round" />
       ))}
       {/* Central hub */}
-      <circle cx={112} cy={68} r={22} fill="#2600FF" opacity="0.12" />
-      <circle cx={112} cy={68} r={14} fill="#2600FF" />
+      <circle cx={112} cy={68} r={22} fill="#D71920" opacity="0.12" />
+      <circle cx={112} cy={68} r={14} fill="#D71920" />
       <text x={112} y={72.5} textAnchor="middle" fontSize="9" fontWeight="700" fill="white" fontFamily="Satoshi, 'RAG Cyrillic Sans', Inter, sans-serif">RAG</text>
     </svg>
   )
@@ -171,7 +171,7 @@ function IllustWebsiteSearch() {
         <rect x="10" y="22" width="46" height="7" rx="3.5" fill="#07070C" />
         <rect x="10" y="34" width="72" height="4" rx="2" fill="#d7d7e0" />
         <rect x="10" y="42" width="62" height="4" rx="2" fill="#d7d7e0" />
-        <rect x="10" y="54" width="30" height="14" rx="4" fill="#2600FF" />
+        <rect x="10" y="54" width="30" height="14" rx="4" fill="#D71920" />
         <rect x="46" y="54" width="30" height="14" rx="4" fill="none" stroke="#d7d7e0" strokeWidth="1.5" />
         <rect x="88" y="22" width="22" height="46" rx="4" fill="#f2f2f7" />
       </svg>
@@ -196,7 +196,7 @@ function IllustCitations() {
           <rect x="10" y="24" width="44" height="3.5" rx="1.75" fill="#d7d7e0" />
           <rect x="10" y="33" width="36" height="3.5" rx="1.75" fill="#d7d7e0" />
           <rect x="10" y="42" width="40" height="3.5" rx="1.75" fill="#d7d7e0" />
-          <circle cx="16" cy="60" r="6" fill={i === 2 ? '#2600FF' : '#34A853'} opacity={i === 2 ? 1 : 0.9} />
+          <circle cx="16" cy="60" r="6" fill={i === 2 ? '#D71920' : '#34A853'} opacity={i === 2 ? 1 : 0.9} />
           <path d={i === 2 ? 'M13.4 60l1.9 1.9 3.4-3.6' : 'M13.4 60l1.9 1.9 3.4-3.6'} stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           <rect x="27" y="57" width="24" height="3.5" rx="1.75" fill="#d7d7e0" />
         </svg>
@@ -298,7 +298,7 @@ function IllustOffline() {
         <defs>
           <linearGradient id="bbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#7c3aed"/>
-            <stop offset="50%" stopColor="#2600FF"/>
+            <stop offset="50%" stopColor="#D71920"/>
             <stop offset="100%" stopColor="#0ea5e9"/>
           </linearGradient>
         </defs>
@@ -328,7 +328,7 @@ function IllustOffline() {
 function IconCheck() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <circle cx="9" cy="9" r="9" fill="#2600FF" />
+      <circle cx="9" cy="9" r="9" fill="#D71920" />
       <path d="M5 9.5l3 3 5-6" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
@@ -349,7 +349,7 @@ function IconChevron({ open }: { open: boolean }) {
     </svg>
   )
 }
-function MapPin({ color = '#2600FF' }: { color?: string }) {
+function MapPin({ color = '#D71920' }: { color?: string }) {
   return (
     <svg width="20" height="24" viewBox="0 0 24 28" fill="none">
       <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 19 9 19s9-12.25 9-19c0-4.97-4.03-9-9-9z" fill={color} />
@@ -498,8 +498,8 @@ function PinD({ size = 64, opacity = 1, filled = false }: { size?: number; opaci
   return (
     <svg aria-hidden width={size} height={size * 1.3} viewBox="0 0 40 52" fill="none" style={{ display: 'block', opacity }}>
       <path d="M20 2C10.1 2 2 9.9 2 19.6 2 32.5 20 50 20 50s18-17.5 18-30.4C38 9.9 29.9 2 20 2z"
-        fill={filled ? '#2600FF' : 'none'} stroke="#2600FF" strokeWidth="2" strokeLinejoin="round" />
-      <circle cx="20" cy="19" r="6" fill={filled ? '#fff' : 'none'} stroke={filled ? '#fff' : '#2600FF'} strokeWidth="2" />
+        fill={filled ? '#D71920' : 'none'} stroke="#D71920" strokeWidth="2" strokeLinejoin="round" />
+      <circle cx="20" cy="19" r="6" fill={filled ? '#fff' : 'none'} stroke={filled ? '#fff' : '#D71920'} strokeWidth="2" />
     </svg>
   )
 }
@@ -547,7 +547,7 @@ function MapBackdrop({ shift = 0, pins = true, fade = 'center' }: { tone?: 'dark
 }
 
 /** Konzentrische Ringe (Scan) — hinter UI-Mockups. */
-function RingsBackdrop({ size = 640, color = '#DAD8F5', style }: { size?: number; color?: string; style?: React.CSSProperties }) {
+function RingsBackdrop({ size = 640, color = '#F3C5C7', style }: { size?: number; color?: string; style?: React.CSSProperties }) {
   const radii = [0.14, 0.25, 0.36, 0.47]
   return (
     <div aria-hidden style={{ position: 'absolute', width: size, height: size, pointerEvents: 'none', ...style }}>
@@ -827,7 +827,7 @@ function SlotPicker({ onConfirm }: { onConfirm: (day: { label: string; date: str
       <div style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 16, paddingBottom: 4 }}>
         {days.map((d, i) => (
           <button key={i} onClick={() => { setSelDay(i); setSelSlot(null) }}
-            style={{ flexShrink: 0, padding: '8px 14px', borderRadius: 999, border: `1px solid ${selDay === i ? '#2600FF' : 'rgba(7,7,12,0.14)'}`, backgroundColor: selDay === i ? '#f2f2ff' : '#f9fafb', color: selDay === i ? '#2600FF' : '#4b5563', fontWeight: 600, fontSize: 11, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.15s', whiteSpace: 'nowrap' }}>
+            style={{ flexShrink: 0, padding: '8px 14px', borderRadius: 999, border: `1px solid ${selDay === i ? '#D71920' : 'rgba(7,7,12,0.14)'}`, backgroundColor: selDay === i ? '#FFF1F1' : '#f9fafb', color: selDay === i ? '#D71920' : '#4b5563', fontWeight: 600, fontSize: 11, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.15s', whiteSpace: 'nowrap' }}>
             {d.label}
           </button>
         ))}
@@ -837,7 +837,7 @@ function SlotPicker({ onConfirm }: { onConfirm: (day: { label: string; date: str
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 18 }}>
           {BOOKING_SLOTS.map(slot => (
             <button key={slot} onClick={() => setSelSlot(slot)}
-              style={{ padding: '12px', borderRadius: 14, border: `1px solid ${selSlot === slot ? '#2600FF' : 'rgba(7,7,12,0.14)'}`, backgroundColor: selSlot === slot ? '#2600FF' : '#fff', color: selSlot === slot ? '#fff' : '#030712', fontWeight: 600, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.15s', boxShadow: selSlot === slot ? '0 1px 2px rgba(0,0,0,0.12)' : 'none' }}>
+              style={{ padding: '12px', borderRadius: 14, border: `1px solid ${selSlot === slot ? '#D71920' : 'rgba(7,7,12,0.14)'}`, backgroundColor: selSlot === slot ? '#D71920' : '#fff', color: selSlot === slot ? '#fff' : '#030712', fontWeight: 600, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.15s', boxShadow: selSlot === slot ? '0 1px 2px rgba(0,0,0,0.12)' : 'none' }}>
               {slot}
             </button>
           ))}
@@ -846,7 +846,7 @@ function SlotPicker({ onConfirm }: { onConfirm: (day: { label: string; date: str
       <button
         disabled={selDay === null || selSlot === null}
         onClick={() => { if (selDay !== null && selSlot !== null) onConfirm(days[selDay], selSlot) }}
-        style={{ backgroundColor: selDay !== null && selSlot !== null ? '#2600FF' : '#e5e7eb', color: selDay !== null && selSlot !== null ? '#fff' : '#9ca3af', fontWeight: 600, fontSize: 14, padding: '13px 22px', borderRadius: 999, border: 'none', cursor: selDay !== null && selSlot !== null ? 'pointer' : 'not-allowed', width: '100%', fontFamily: 'inherit', transition: 'all 0.2s' }}>
+        style={{ backgroundColor: selDay !== null && selSlot !== null ? '#D71920' : '#e5e7eb', color: selDay !== null && selSlot !== null ? '#fff' : '#9ca3af', fontWeight: 600, fontSize: 14, padding: '13px 22px', borderRadius: 999, border: 'none', cursor: selDay !== null && selSlot !== null ? 'pointer' : 'not-allowed', width: '100%', fontFamily: 'inherit', transition: 'all 0.2s' }}>
         Buchung bestätigen
       </button>
     </div>
@@ -910,7 +910,7 @@ function BookCallModal({ onClose }: { onClose: () => void }) {
             <button
               disabled={!canContinue}
               onClick={() => canContinue && setModalStep(2)}
-              style={{ width: '100%', padding: '13px', borderRadius: 999, border: 'none', backgroundColor: canContinue ? '#2600FF' : '#d1d5db', color: '#fff', fontWeight: 500, fontSize: 15, cursor: canContinue ? 'pointer' : 'not-allowed', fontFamily: 'inherit', transition: 'background 0.15s' }}>
+              style={{ width: '100%', padding: '13px', borderRadius: 999, border: 'none', backgroundColor: canContinue ? '#D71920' : '#d1d5db', color: '#fff', fontWeight: 500, fontSize: 15, cursor: canContinue ? 'pointer' : 'not-allowed', fontFamily: 'inherit', transition: 'background 0.15s' }}>
               Weiter
             </button>
           </>
@@ -931,11 +931,11 @@ function BookCallModal({ onClose }: { onClose: () => void }) {
         {modalStep === 3 && (
           <div style={{ textAlign: 'center' }}>
             <div style={{ width: 52, height: 52, borderRadius: '50%', backgroundColor: '#ede9fe', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#2600FF" /><path d="M7 12.5l3.5 3.5 6.5-7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#D71920" /><path d="M7 12.5l3.5 3.5 6.5-7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </div>
             <h2 style={{ fontWeight: 700, fontSize: 22, color: '#030712', marginBottom: 12, letterSpacing: '-0.4px' }}>Ihr Termin ist gebucht!</h2>
-            <div style={{ backgroundColor: '#f2f2ff', border: '1px solid #ddd6fe', borderRadius: 12, padding: '14px 16px', marginBottom: 16, textAlign: 'left' }}>
-              <div style={{ fontSize: 11, fontWeight: 600, color: '#2600FF', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>Ihr Termin</div>
+            <div style={{ backgroundColor: '#FFF1F1', border: '1px solid #ddd6fe', borderRadius: 12, padding: '14px 16px', marginBottom: 16, textAlign: 'left' }}>
+              <div style={{ fontSize: 11, fontWeight: 600, color: '#D71920', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>Ihr Termin</div>
               <p style={{ fontSize: 14, fontWeight: 700, color: '#030712', marginBottom: 4 }}>
                 {bookedDay?.date} um {bookedSlot} Uhr · {bService}
               </p>
@@ -1183,7 +1183,7 @@ function OrderRow({ label, value, unit }: { label: string; value: string; unit: 
 function OrderDone({ name, contact, summary, onClose }: { name: string; contact: string; summary: React.ReactNode; onClose: () => void }) {
   return (
     <div style={{ textAlign: 'center', padding: '8px 0' }}>
-      <div style={{ width: 52, height: 52, borderRadius: '50%', backgroundColor: '#EEEBFF', color: '#2600FF', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 24, fontWeight: 700 }}>✓</div>
+      <div style={{ width: 52, height: 52, borderRadius: '50%', backgroundColor: '#FDEBEC', color: '#D71920', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 24, fontWeight: 700 }}>✓</div>
       <h2 id="order-title" style={{ fontWeight: 700, fontSize: 21, margin: '0 0 10px' }}>Danke, {name.trim()}!</h2>
       <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, margin: '0 0 16px' }}>
         Wir melden uns unter <strong style={{ color: 'var(--ink)' }}>{contact}</strong> und besprechen alles Weitere mit Ihnen.
@@ -1198,7 +1198,7 @@ function SendButton({ enabled, onSend, label = 'Anfrage senden' }: { enabled: bo
   return (
     <>
       <button type="button" disabled={!enabled} onClick={() => enabled && onSend()}
-        style={{ width: '100%', marginTop: 16, padding: '13px 20px', borderRadius: 999, border: 'none', backgroundColor: enabled ? '#2600FF' : '#e5e7eb', color: enabled ? '#fff' : '#9ca3af', fontWeight: 600, fontSize: 14.5, cursor: enabled ? 'pointer' : 'default', fontFamily: 'inherit' }}>
+        style={{ width: '100%', marginTop: 16, padding: '13px 20px', borderRadius: 999, border: 'none', backgroundColor: enabled ? '#D71920' : '#e5e7eb', color: enabled ? '#fff' : '#9ca3af', fontWeight: 600, fontSize: 14.5, cursor: enabled ? 'pointer' : 'default', fontFamily: 'inherit' }}>
         {label}
       </button>
       <p style={{ fontSize: 11.5, color: '#9ca3af', lineHeight: 1.6, margin: '10px 0 0' }}>
@@ -1251,8 +1251,8 @@ function ProfileOrderModal({ onClose, initialSocial = false, initialWeb = false 
             <strong style={{ color: 'var(--ink)' }}>{PROFILE_PRICE} einmalig</strong>. Wir erstellen oder optimieren Ihr Profil. Im nächsten Schritt legen Sie Ihren Kundenbereich an oder melden sich an.
           </p>
           <p className="eyebrow" style={{ fontSize: 9.5, color: 'rgba(7,7,12,0.45)', marginBottom: 8 }}>Optional dazu · monatlich</p>
-          <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer', padding: '11px 14px', borderRadius: 14, marginBottom: 14, border: `1px solid ${social ? '#2600FF' : 'rgba(7,7,12,0.12)'}`, backgroundColor: social ? '#F4F2FF' : '#fff', transition: 'all 0.2s ease' }}>
-            <input type="checkbox" checked={social} onChange={() => setSocial(!social)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#2600FF', flexShrink: 0 }} />
+          <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer', padding: '11px 14px', borderRadius: 14, marginBottom: 14, border: `1px solid ${social ? '#D71920' : 'rgba(7,7,12,0.12)'}`, backgroundColor: social ? '#FFF1F1' : '#fff', transition: 'all 0.2s ease' }}>
+            <input type="checkbox" checked={social} onChange={() => setSocial(!social)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#D71920', flexShrink: 0 }} />
             <span style={{ flex: 1, minWidth: 0 }}>
               <span style={{ display: 'flex', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
                 <span style={{ fontWeight: 600, fontSize: 14.5 }}>{SOCIAL_ADDON.name}</span>
@@ -1261,8 +1261,8 @@ function ProfileOrderModal({ onClose, initialSocial = false, initialWeb = false 
               <span style={{ display: 'block', fontSize: 12.5, lineHeight: 1.55, color: 'var(--muted)', marginTop: 3 }}>{SOCIAL_ADDON.thesis}</span>
             </span>
           </label>
-          <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer', padding: '11px 14px', borderRadius: 14, marginBottom: 14, border: `1px solid ${web ? '#2600FF' : 'rgba(7,7,12,0.12)'}`, backgroundColor: web ? '#F4F2FF' : '#fff', transition: 'all 0.2s ease' }}>
-            <input type="checkbox" checked={web} onChange={() => setWeb(!web)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#2600FF', flexShrink: 0 }} />
+          <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer', padding: '11px 14px', borderRadius: 14, marginBottom: 14, border: `1px solid ${web ? '#D71920' : 'rgba(7,7,12,0.12)'}`, backgroundColor: web ? '#FFF1F1' : '#fff', transition: 'all 0.2s ease' }}>
+            <input type="checkbox" checked={web} onChange={() => setWeb(!web)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#D71920', flexShrink: 0 }} />
             <span style={{ flex: 1, minWidth: 0 }}>
               <span style={{ display: 'flex', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
                 <span style={{ fontWeight: 600, fontSize: 14.5 }}>{onePager.name}</span>
@@ -1291,9 +1291,9 @@ function PackageOrderModal({ initial, onClose }: { initial: PackageOrder; onClos
   const canSend = total > 0
 
   const option = (on: boolean, onToggle: () => void, title: string, price: number, note: string, type: 'radio' | 'checkbox') => (
-    <label key={title} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer', padding: '11px 14px', borderRadius: 14, border: `1px solid ${on ? '#2600FF' : 'rgba(7,7,12,0.12)'}`, backgroundColor: on ? '#F4F2FF' : '#fff', transition: 'all 0.2s ease' }}>
+    <label key={title} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', cursor: 'pointer', padding: '11px 14px', borderRadius: 14, border: `1px solid ${on ? '#D71920' : 'rgba(7,7,12,0.12)'}`, backgroundColor: on ? '#FFF1F1' : '#fff', transition: 'all 0.2s ease' }}>
       <input type={type} name={type === 'radio' ? 'rag-package' : undefined} checked={on} onChange={onToggle} onClick={type === 'radio' && on ? onToggle : undefined}
-        style={{ width: 18, height: 18, marginTop: 1, accentColor: '#2600FF', flexShrink: 0 }} />
+        style={{ width: 18, height: 18, marginTop: 1, accentColor: '#D71920', flexShrink: 0 }} />
       <span style={{ flex: 1, minWidth: 0 }}>
         <span style={{ display: 'flex', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
           <span style={{ fontWeight: 600, fontSize: 14.5 }}>{title}</span>
@@ -1393,8 +1393,8 @@ function Pricing() {
                 </div>
                 <h2 className="display" style={{ fontSize: 'clamp(24px, 2.4vw, 34px)', lineHeight: 1.15, margin: '0 0 12px' }}>{PROFILE_PACKAGE.name}</h2>
                 <p style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--muted)', margin: '0 0 18px', maxWidth: 440 }}>{PROFILE_PACKAGE.thesis}</p>
-                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '9px 14px', borderRadius: 999, marginBottom: 22, border: `1px solid ${profileSocial ? '#2600FF' : 'rgba(7,7,12,0.14)'}`, backgroundColor: profileSocial ? '#F4F2FF' : '#fff', fontSize: 14, transition: 'all 0.2s ease' }}>
-                  <input type="checkbox" checked={profileSocial} onChange={() => setProfileSocial(!profileSocial)} style={{ width: 17, height: 17, margin: 0, accentColor: '#2600FF' }} />
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '9px 14px', borderRadius: 999, marginBottom: 22, border: `1px solid ${profileSocial ? '#D71920' : 'rgba(7,7,12,0.14)'}`, backgroundColor: profileSocial ? '#FFF1F1' : '#fff', fontSize: 14, transition: 'all 0.2s ease' }}>
+                  <input type="checkbox" checked={profileSocial} onChange={() => setProfileSocial(!profileSocial)} style={{ width: 17, height: 17, margin: 0, accentColor: '#D71920' }} />
                   <span>+ {SOCIAL_ADDON.name}</span>
                   <strong style={{ whiteSpace: 'nowrap' }}>{SOCIAL_ADDON.price} €/Monat</strong>
                 </label>
@@ -1962,12 +1962,12 @@ function ChannelBlock({ id, label, title, body, actions, aside, article, tone = 
 function PanelMapBackdrop() {
   return (
     <div aria-hidden style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '62%', pointerEvents: 'none', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(#ECEBFF 8px, transparent 8px), linear-gradient(90deg, #ECEBFF 8px, transparent 8px)', backgroundSize: '96px 80px', backgroundColor: '#E2E0FB' }} />
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(#FDEBEC 8px, transparent 8px), linear-gradient(90deg, #FDEBEC 8px, transparent 8px)', backgroundSize: '96px 80px', backgroundColor: '#E2E0FB' }} />
       <svg viewBox="0 0 720 620" preserveAspectRatio="xMidYMid slice" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
         <path d="M0 430 C 200 370, 380 490, 720 390" stroke="#F7F7FF" strokeWidth="24" fill="none" />
         <path d="M470 -20 C 430 200, 560 360, 520 640" stroke="#F7F7FF" strokeWidth="18" fill="none" />
       </svg>
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, #ECEBFF 0%, rgba(236,235,255,0.6) 30%, rgba(236,235,255,0) 60%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, #FDEBEC 0%, rgba(236,235,255,0.6) 30%, rgba(236,235,255,0) 60%)' }} />
     </div>
   )
 }
@@ -2133,7 +2133,7 @@ function ChannelSearch() {
 function ChannelSocial() {
   const [order, setOrder] = useState(false)
   const pillars = [
-    ['Menschen', 'Zeigen Sie sich und Ihr Team. So bekommt das Unternehmen ein Gesicht.', '#ECEBFF', '#6D6A9E'],
+    ['Menschen', 'Zeigen Sie sich und Ihr Team. So bekommt das Unternehmen ein Gesicht.', '#FDEBEC', '#6D6A9E'],
     ['Arbeitsweise', 'Zeigen Sie, wie Sie arbeiten, ohne Inszenierung und Marketing-Floskeln.', '#E6F4EE', '#4D7A66'],
     ['Ergebnisse', 'Echte Arbeiten, Projekte und Kunden erklären Qualität besser als jedes Werbeversprechen.', '#FFF1DE', '#9A7440'],
   ]
@@ -2212,7 +2212,7 @@ function ChannelSummary() {
               </g>
             </svg>
             <RingsBackdrop size={380} color="#E2E0F0" style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)' }} />
-            <div className="hub-center" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 176, height: 176, borderRadius: '50%', backgroundColor: 'var(--electric)', color: '#fff', display: 'grid', placeItems: 'center', textAlign: 'center', fontWeight: 800, fontSize: 18, lineHeight: 1.25, boxShadow: '0 20px 60px rgba(38,0,255,.35)' }}>Ihr<br />Unternehmen</div>
+            <div className="hub-center" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 176, height: 176, borderRadius: '50%', backgroundColor: 'var(--electric)', color: '#fff', display: 'grid', placeItems: 'center', textAlign: 'center', fontWeight: 800, fontSize: 18, lineHeight: 1.25, boxShadow: '0 20px 60px rgba(215,25,32,.35)' }}>Ihr<br />Unternehmen</div>
             <div className="hub-grid" style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'minmax(0, 320px) minmax(0, 1fr) minmax(0, 320px)', gridTemplateRows: 'auto auto', rowGap: 180, alignContent: 'space-between', minHeight: 420, paddingTop: 30 }}>
               <div style={{ gridColumn: 1, gridRow: 1 }}>{card(rows[0])}</div>
               <div style={{ gridColumn: 3, gridRow: 1 }}>{card(rows[1])}</div>
@@ -2272,7 +2272,7 @@ function BusinessCheck() {
                   <p style={{ fontWeight: 800, margin: 0 }}>Beispielbericht</p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 20 }}>
-                  <div aria-hidden style={{ width: 104, height: 104, borderRadius: '50%', background: 'conic-gradient(#2600FF 0 62%, #ECEBFF 62% 100%)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+                  <div aria-hidden style={{ width: 104, height: 104, borderRadius: '50%', background: 'conic-gradient(#D71920 0 62%, #FDEBEC 62% 100%)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
                     <div style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#fff', display: 'grid', placeItems: 'center', fontSize: 30, fontWeight: 800 }}>62</div>
                   </div>
                   <p className="display" style={{ fontSize: 20, margin: 0 }}>Lokale Sichtbarkeit</p>
@@ -2764,11 +2764,11 @@ function QuoteModal({ selected, onClose }: { selected: string[]; onClose: () => 
             <h3 style={{ fontWeight: 700, fontSize: 20, color: '#030712', marginBottom: 6 }}>Sagen Sie uns, was Sie brauchen</h3>
             <p style={{ fontSize: 13, color: '#6b7280', marginBottom: 20 }}>Wir erstellen einen Plan rund um Ihre ausgewählten Leistungen.</p>
             <div style={{ marginBottom: 18 }}>
-              <p style={{ fontSize: 11, fontWeight: 700, color: '#2600FF', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>Ausgewählte Leistungen</p>
+              <p style={{ fontSize: 11, fontWeight: 700, color: '#D71920', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>Ausgewählte Leistungen</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {modules.map(m => (
                   <label key={m.label} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '8px 12px', borderRadius: 10, border: `1.5px solid ${services.includes(m.label) ? '#c4b5fd' : '#e5e7eb'}`, backgroundColor: services.includes(m.label) ? '#f5f3ff' : '#fff', transition: 'all 0.15s' }}>
-                    <div style={{ width: 18, height: 18, borderRadius: 5, border: `2px solid ${services.includes(m.label) ? '#2600FF' : '#d1d5db'}`, backgroundColor: services.includes(m.label) ? '#2600FF' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.15s' }}>
+                    <div style={{ width: 18, height: 18, borderRadius: 5, border: `2px solid ${services.includes(m.label) ? '#D71920' : '#d1d5db'}`, backgroundColor: services.includes(m.label) ? '#D71920' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.15s' }}>
                       {services.includes(m.label) && <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                     </div>
                     <input type="checkbox" checked={services.includes(m.label)} onChange={() => toggle(m.label)} style={{ display: 'none' }} />
@@ -2785,7 +2785,7 @@ function QuoteModal({ selected, onClose }: { selected: string[]; onClose: () => 
             <button
               disabled={!name || !contact || services.length === 0}
               onClick={() => setSent(true)}
-              style={{ width: '100%', padding: '13px', borderRadius: 999, border: 'none', backgroundColor: (!name || !contact || services.length === 0) ? '#e5e7eb' : '#2600FF', color: (!name || !contact || services.length === 0) ? '#9ca3af' : '#fff', fontWeight: 600, fontSize: 14, cursor: (!name || !contact || services.length === 0) ? 'default' : 'pointer', fontFamily: 'inherit', transition: 'background 0.15s' }}>
+              style={{ width: '100%', padding: '13px', borderRadius: 999, border: 'none', backgroundColor: (!name || !contact || services.length === 0) ? '#e5e7eb' : '#D71920', color: (!name || !contact || services.length === 0) ? '#9ca3af' : '#fff', fontWeight: 600, fontSize: 14, cursor: (!name || !contact || services.length === 0) ? 'default' : 'pointer', fontFamily: 'inherit', transition: 'background 0.15s' }}>
               Anfrage senden
             </button>
           </>
@@ -2850,7 +2850,7 @@ function ServiceSelector() {
                       <div className="svc-actions" style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-end' }}>
                         <button onClick={() => setExpanded(isOpen ? null : m.slug)} aria-label="Details"
                           style={{ width: 42, height: 42, borderRadius: 12, border: 'none', background: isOpen ? 'var(--electric)' : 'var(--brand-soft)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: `transform 0.5s ${EASE}, background-color .3s ease`, transform: isOpen ? 'rotate(45deg)' : 'none', flexShrink: 0 }}>
-                          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke={isOpen ? '#fff' : '#2600FF'} strokeWidth="1.8" strokeLinecap="round" /></svg>
+                          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke={isOpen ? '#fff' : '#D71920'} strokeWidth="1.8" strokeLinecap="round" /></svg>
                         </button>
                         <button type="button" onClick={() => open(m.slug)} className="btn btn-md btn-electric" style={{ whiteSpace: 'nowrap' }}>
                           Paket wählen <span className="arw">→</span>
@@ -3045,7 +3045,7 @@ function Process() {
             <div style={{ position: 'sticky', top: 120, height: 'calc(100vh - 240px)', display: 'flex', justifyContent: 'center' }}>
               <div style={{ width: 2, height: '100%', backgroundColor: 'rgba(7,7,12,0.1)', position: 'relative', borderRadius: 2 }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: `${p * 100}%`, backgroundColor: 'var(--electric)', borderRadius: 2, transition: 'height 0.15s linear' }} />
-                <div style={{ position: 'absolute', top: `${p * 100}%`, left: '50%', transform: 'translate(-50%, -50%)', width: 12, height: 12, borderRadius: '50%', backgroundColor: 'var(--electric)', boxShadow: '0 0 0 6px rgba(38,0,255,0.15)', transition: 'top 0.15s linear' }} />
+                <div style={{ position: 'absolute', top: `${p * 100}%`, left: '50%', transform: 'translate(-50%, -50%)', width: 12, height: 12, borderRadius: '50%', backgroundColor: 'var(--electric)', boxShadow: '0 0 0 6px rgba(215,25,32,0.15)', transition: 'top 0.15s linear' }} />
               </div>
             </div>
           </div>
@@ -3062,7 +3062,7 @@ function Process() {
                   marginLeft: i % 2 === 1 ? 'clamp(0px, 4vw, 56px)' : 0,
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(16px, 2vw, 28px)' }}>
-                    <div className="display" style={{ flex: '0 0 auto', minWidth: '1.25em', fontSize: 'clamp(44px, 5vw, 72px)', lineHeight: 0.9, color: 'transparent', WebkitTextStroke: '1.4px #2600FF' }}>{s.num}</div>
+                    <div className="display" style={{ flex: '0 0 auto', minWidth: '1.25em', fontSize: 'clamp(44px, 5vw, 72px)', lineHeight: 0.9, color: 'transparent', WebkitTextStroke: '1.4px #D71920' }}>{s.num}</div>
                     <h3 className="display" style={{ fontSize: 'clamp(18px, 1.7vw, 24px)', lineHeight: 1.2, margin: 0 }}>{s.title}</h3>
                   </div>
                   <div>
@@ -3119,7 +3119,7 @@ function IllustCaseMaps() {
       <text x="212" y="57" fontSize="7" fontWeight="700" fill="#111827" fontFamily="Arial, sans-serif">Ihre Autowerkstatt</text>
       <text x="212" y="65" fontSize="6" fill="#f59e0b" fontFamily="Arial, sans-serif">4,9 ★★★★★</text>
       <text x="212" y="72" fontSize="5.5" fill="#059669" fontWeight="600" fontFamily="Arial, sans-serif">8 Anrufe · erste Woche</text>
-      <rect x="213" y="75" width="38" height="10" rx="5" fill="#2600FF"/>
+      <rect x="213" y="75" width="38" height="10" rx="5" fill="#D71920"/>
       <text x="232" y="83" textAnchor="middle" fontSize="5.5" fontWeight="700" fill="white" fontFamily="Arial, sans-serif">Jetzt anrufen</text>
       {[['Mitbewerber Nr. 2','4,8 ★'],['Mitbewerber Nr. 3','4,7 ★']].map(([n,r],i)=>(
         <g key={i}>
@@ -3396,16 +3396,16 @@ function AuditQuiz() {
   const hint: React.CSSProperties = { fontSize: 13, color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.6 }
   const label: React.CSSProperties = { display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--ink)', margin: '0 0 6px' }
   const input: React.CSSProperties = { width: '100%', padding: '12px 14px', border: '1px solid rgba(7,7,12,0.14)', borderRadius: 12, fontSize: 14, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', marginBottom: 12, color: 'var(--ink)', backgroundColor: '#fff' }
-  const primary = (disabled: boolean): React.CSSProperties => ({ backgroundColor: disabled ? '#e5e7eb' : '#2600FF', color: disabled ? '#9ca3af' : '#fff', fontWeight: 600, fontSize: 14, padding: '13px 20px', borderRadius: 999, border: 'none', cursor: disabled ? 'default' : 'pointer', width: '100%', fontFamily: 'inherit', transition: 'background-color 0.2s' })
+  const primary = (disabled: boolean): React.CSSProperties => ({ backgroundColor: disabled ? '#e5e7eb' : '#D71920', color: disabled ? '#9ca3af' : '#fff', fontWeight: 600, fontSize: 14, padding: '13px 20px', borderRadius: 999, border: 'none', cursor: disabled ? 'default' : 'pointer', width: '100%', fontFamily: 'inherit', transition: 'background-color 0.2s' })
 
   const Option = ({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) => (
     <button type="button" onClick={onClick} aria-pressed={selected}
-      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, width: '100%', padding: '12px 16px', textAlign: 'left', backgroundColor: selected ? '#F4F2FF' : '#fff', border: `1px solid ${selected ? '#2600FF' : 'rgba(7,7,12,0.12)'}`, borderRadius: 14, fontWeight: 500, fontSize: 14, color: 'var(--ink)', cursor: 'pointer', marginBottom: 8, transition: 'all 0.2s ease', fontFamily: 'inherit' }}>
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, width: '100%', padding: '12px 16px', textAlign: 'left', backgroundColor: selected ? '#FFF1F1' : '#fff', border: `1px solid ${selected ? '#D71920' : 'rgba(7,7,12,0.12)'}`, borderRadius: 14, fontWeight: 500, fontSize: 14, color: 'var(--ink)', cursor: 'pointer', marginBottom: 8, transition: 'all 0.2s ease', fontFamily: 'inherit' }}>
       {label}
       <span aria-hidden style={{
         flexShrink: 0, width: 18, height: 18, borderRadius: 5,
-        border: `1.5px solid ${selected ? '#2600FF' : 'rgba(7,7,12,0.25)'}`,
-        backgroundColor: selected ? '#2600FF' : 'transparent', color: '#fff', fontSize: 11, lineHeight: '15px', textAlign: 'center',
+        border: `1.5px solid ${selected ? '#D71920' : 'rgba(7,7,12,0.25)'}`,
+        backgroundColor: selected ? '#D71920' : 'transparent', color: '#fff', fontSize: 11, lineHeight: '15px', textAlign: 'center',
       }}>{selected ? '✓' : ''}</span>
     </button>
   )
@@ -3464,7 +3464,7 @@ function AuditQuiz() {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: `repeat(${TOTAL}, 1fr)`, gap: 4 }}>
                 {Array.from({ length: TOTAL }, (_, i) => (
-                  <div key={i} style={{ height: 4, borderRadius: 2, backgroundColor: i < step ? '#2600FF' : '#e5e7eb', transition: 'background-color 0.3s' }} />
+                  <div key={i} style={{ height: 4, borderRadius: 2, backgroundColor: i < step ? '#D71920' : '#e5e7eb', transition: 'background-color 0.3s' }} />
                 ))}
               </div>
             </div>
@@ -3515,20 +3515,20 @@ function AuditQuiz() {
 
           {step === DONE && (
             <div style={{ textAlign: 'center', padding: '12px 0' }}>
-              <div style={{ width: 52, height: 52, borderRadius: '50%', backgroundColor: '#EEEBFF', color: '#2600FF', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 24, fontWeight: 700 }}>✓</div>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', backgroundColor: '#FDEBEC', color: '#D71920', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 24, fontWeight: 700 }}>✓</div>
               <h3 style={{ ...h3, fontSize: 20, marginBottom: 10 }}>Danke, {name.trim()}!</h3>
               <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, margin: '0 0 18px' }}>
                 Wir sehen uns Ihre Angaben an und melden uns mit Ihrer Anleitung unter <strong style={{ color: 'var(--ink)' }}>{contact}</strong>.
               </p>
               <div style={{ textAlign: 'left', backgroundColor: '#F7F6FF', border: '1px solid #E4DFFF', borderRadius: 14, padding: '14px 16px', marginBottom: 18 }}>
-                <p className="eyebrow" style={{ fontSize: 9.5, color: '#2600FF', marginBottom: 8 }}>Ihre Angaben</p>
+                <p className="eyebrow" style={{ fontSize: 9.5, color: '#D71920', marginBottom: 8 }}>Ihre Angaben</p>
                 <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--ink)', margin: 0, overflowWrap: 'anywhere' }}>
                   <span>{industry}</span> · <span>{city}</span><br />
                   {presence.map((x, i) => <span key={x}>{i > 0 && ', '}{x}</span>)}
                   {link.trim() && <><br /><span>{link.trim()}</span></>}
                 </p>
               </div>
-              <button type="button" onClick={reset} style={{ backgroundColor: '#F4F2FF', color: '#2600FF', fontWeight: 500, fontSize: 13, padding: '9px 20px', borderRadius: 10, border: '1px solid #ddd6fe', cursor: 'pointer', fontFamily: 'inherit' }}>Neue Anfrage</button>
+              <button type="button" onClick={reset} style={{ backgroundColor: '#FFF1F1', color: '#D71920', fontWeight: 500, fontSize: 13, padding: '9px 20px', borderRadius: 10, border: '1px solid #ddd6fe', cursor: 'pointer', fontFamily: 'inherit' }}>Neue Anfrage</button>
             </div>
           )}
         </div>
@@ -3592,7 +3592,7 @@ function FAQ() {
                     transform: isOpen ? 'rotate(45deg)' : 'none',
                     transition: `transform 0.5s ${EASE}, background-color 0.35s ease`,
                   }}>
-                    <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke={isOpen ? '#fff' : '#2600FF'} strokeWidth="1.8" strokeLinecap="round" /></svg>
+                    <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke={isOpen ? '#fff' : '#D71920'} strokeWidth="1.8" strokeLinecap="round" /></svg>
                   </span>
                 </button>
                 <div style={{ overflow: 'hidden', maxHeight: isOpen ? 400 : 0, transition: `max-height 0.6s ${EASE}` }}>
@@ -3955,7 +3955,7 @@ function ServiceLeadForm({ serviceLabel }: { serviceLabel: string }) {
       <button
         disabled={!name || !contact}
         onClick={() => setSent(true)}
-        style={{ padding: '13px', borderRadius: 999, border: 'none', backgroundColor: (!name || !contact) ? '#e5e7eb' : '#2600FF', color: (!name || !contact) ? '#9ca3af' : '#fff', fontWeight: 600, fontSize: 14, cursor: (!name || !contact) ? 'default' : 'pointer', fontFamily: 'inherit', transition: 'background 0.15s' }}>
+        style={{ padding: '13px', borderRadius: 999, border: 'none', backgroundColor: (!name || !contact) ? '#e5e7eb' : '#D71920', color: (!name || !contact) ? '#9ca3af' : '#fff', fontWeight: 600, fontSize: 14, cursor: (!name || !contact) ? 'default' : 'pointer', fontFamily: 'inherit', transition: 'background 0.15s' }}>
         Anfrage senden
       </button>
     </div>
@@ -4808,7 +4808,7 @@ const glossarCSS = `
 .gl-faq .gl-plus{transition:transform .25s}
 .gl-faq details[open] .gl-plus{transform:rotate(45deg)}
 .gl-card{transition:border-color .2s,transform .25s}
-.gl-card:hover{border-color:#D6D2FF;transform:translateY(-3px);box-shadow:0 28px 70px rgba(38,0,255,.10)}
+.gl-card:hover{border-color:#F3C5C7;transform:translateY(-3px);box-shadow:0 28px 70px rgba(215,25,32,.10)}
 @media (min-width: 900px){.gl-aside{position:sticky;top:110px}}
 `
 
@@ -5227,7 +5227,7 @@ function ServicePackages({ slug }: { slug: string }) {
               const monthly = (addSocial ? SOCIAL_ADDON.price : 0) + (addWeb ? WEBSITE_PACKAGES.find(w => w.id === 'onepager')!.price : 0)
               const addonRow = (on: boolean, toggle: () => void, label: string, price: number) => (
                 <label key={label} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '10px 14px', borderRadius: 14, border: `1px solid ${on ? 'var(--electric)' : 'var(--border)'}`, backgroundColor: on ? 'var(--brand-soft)' : '#fff', fontSize: 14.5, transition: 'all 0.2s ease' }}>
-                  <input type="checkbox" checked={on} onChange={toggle} style={{ width: 17, height: 17, margin: 0, accentColor: '#2600FF', flexShrink: 0 }} />
+                  <input type="checkbox" checked={on} onChange={toggle} style={{ width: 17, height: 17, margin: 0, accentColor: '#D71920', flexShrink: 0 }} />
                   <span style={{ flex: 1 }}>{label}</span>
                   <strong style={{ whiteSpace: 'nowrap' }}>+ {price} € <span style={{ fontWeight: 500, color: 'var(--muted)' }}>/ Monat</span></strong>
                 </label>
@@ -5247,7 +5247,7 @@ function ServicePackages({ slug }: { slug: string }) {
               )
               return (
                 <Reveal key={id} delay={0.06 * i} style={{ display: 'flex' }}>
-                  <article className={`d-card${single ? ' svc-pk-wide' : ''}`} style={{ position: 'relative', flex: 1, display: single ? 'grid' : 'flex', flexDirection: 'column', gridTemplateColumns: single ? 'minmax(0, 0.85fr) minmax(0, 1.15fr)' : undefined, gap: single ? 'clamp(28px, 4vw, 64px)' : 20, padding: 'clamp(26px, 2.8vw, 44px)', color: 'var(--ink)', border: hi ? '2px solid var(--electric)' : '1px solid var(--border)', boxShadow: hi ? '0 30px 70px rgba(38,0,255,0.16)' : undefined }}>
+                  <article className={`d-card${single ? ' svc-pk-wide' : ''}`} style={{ position: 'relative', flex: 1, display: single ? 'grid' : 'flex', flexDirection: 'column', gridTemplateColumns: single ? 'minmax(0, 0.85fr) minmax(0, 1.15fr)' : undefined, gap: single ? 'clamp(28px, 4vw, 64px)' : 20, padding: 'clamp(26px, 2.8vw, 44px)', color: 'var(--ink)', border: hi ? '2px solid var(--electric)' : '1px solid var(--border)', boxShadow: hi ? '0 30px 70px rgba(215,25,32,0.16)' : undefined }}>
                     {hi && !single && (
                       <span style={{ position: 'absolute', top: -16, left: 'clamp(26px, 2.8vw, 40px)', height: 32, padding: '0 14px', borderRadius: 999, backgroundColor: 'var(--electric)', color: '#fff', fontSize: 13, fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: 6 }}><span aria-hidden>★</span><span>Passt hierzu</span></span>
                     )}
@@ -5791,7 +5791,7 @@ function ProblemVisual({ kind }: { kind: ServiceContent['problem']['visual'] }) 
         <span><span style={{ display: 'block', fontWeight: 800, fontSize: 14 }}>{name}</span><span style={muted}>{note}</span></span>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 4 }}>
-        {(fresh ? ['#ECEBFF', '#E6F4EE', '#FFF1DE', '#E6F4EE', '#ECEBFF', '#FFF1DE'] : ['#EDEDF2', '#EDEDF2', '#EDEDF2']).map((c, i) => <Tile key={i} bg={c} />)}
+        {(fresh ? ['#FDEBEC', '#E6F4EE', '#FFF1DE', '#E6F4EE', '#FDEBEC', '#FFF1DE'] : ['#EDEDF2', '#EDEDF2', '#EDEDF2']).map((c, i) => <Tile key={i} bg={c} />)}
       </div>
     </div>
   )
@@ -6041,7 +6041,7 @@ function ServicePage({ slug }: { slug: string }) {
                     style={{ width: '100%', padding: 'clamp(18px, 2vw, 24px) clamp(20px, 2.4vw, 28px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 16, fontFamily: 'inherit' }}>
                     <span style={{ fontWeight: 800, fontSize: 'clamp(16px, 1.4vw, 18px)', color: open ? 'var(--electric)' : 'var(--ink)' }}>{item.q}</span>
                     <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: 999, backgroundColor: open ? 'var(--electric)' : 'var(--brand-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: open ? 'rotate(45deg)' : 'none', transition: `transform 0.5s ${EASE}, background-color .3s ease` }}>
-                      <svg width="12" height="12" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke={open ? '#fff' : '#2600FF'} strokeWidth="1.8" strokeLinecap="round" /></svg>
+                      <svg width="12" height="12" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke={open ? '#fff' : '#D71920'} strokeWidth="1.8" strokeLinecap="round" /></svg>
                     </span>
                   </button>
                   <div style={{ overflow: 'hidden', maxHeight: open ? 320 : 0, transition: `max-height 0.5s ${EASE}` }}>
@@ -6074,7 +6074,7 @@ function ServicePage({ slug }: { slug: string }) {
                   <span style={{ fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 999, backgroundColor: 'var(--bone)', color: 'var(--muted)' }}>nur Beispiel</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 20 }}>
-                  <div aria-hidden style={{ width: 96, height: 96, borderRadius: '50%', background: 'conic-gradient(#2600FF 0 62%, #ECEBFF 62% 100%)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+                  <div aria-hidden style={{ width: 96, height: 96, borderRadius: '50%', background: 'conic-gradient(#D71920 0 62%, #FDEBEC 62% 100%)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
                     <div style={{ width: 74, height: 74, borderRadius: '50%', backgroundColor: '#fff', display: 'grid', placeItems: 'center', fontSize: 28, fontWeight: 800 }}>62</div>
                   </div>
                   <p className="display" style={{ fontSize: 20, margin: 0 }}>Lokale Sichtbarkeit</p>
@@ -6307,10 +6307,10 @@ function BookCallWidget({ sentinelRef }: { sentinelRef: React.RefObject<HTMLDivE
           {!hovered ? (
             <button onClick={() => setModal(true)} aria-label="Anruf buchen"
               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2600FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#D71920" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
               </svg>
-              <span className="eyebrow" style={{ fontSize: 9, color: '#2600FF', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>Buchen</span>
+              <span className="eyebrow" style={{ fontSize: 9, color: '#D71920', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>Buchen</span>
             </button>
           ) : (
             <>
@@ -6604,7 +6604,7 @@ function StartQuizPage() {
                   <Kicker>In 4 Fragen zu Ihrem Plan</Kicker>
                   <div aria-hidden style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 18 }}>
                     {Array.from({ length: TOTAL }).map((_, i) => (
-                      <span key={i} style={{ width: i === step ? 36 : 18, height: 6, borderRadius: 999, backgroundColor: i <= step ? 'var(--electric)' : '#DAD8F5', transition: 'width .3s, background-color .3s' }} />
+                      <span key={i} style={{ width: i === step ? 36 : 18, height: 6, borderRadius: 999, backgroundColor: i <= step ? 'var(--electric)' : '#F3C5C7', transition: 'width .3s, background-color .3s' }} />
                     ))}
                   </div>
                 </div>

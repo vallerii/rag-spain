@@ -165,11 +165,11 @@ export default function AccountStep({ submitLabel, loggedInLabel, onAuthed, onBa
           {mode === 'register' && (
             <div style={{ display: 'grid', gap: 8, marginTop: 12 }}>
               <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13.5, lineHeight: 1.5, cursor: 'pointer', fontWeight: 600 }}>
-                <input type="checkbox" checked={privacyOk} onChange={() => setPrivacyOk(v => !v)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#2600FF', flexShrink: 0 }} />
+                <input type="checkbox" checked={privacyOk} onChange={() => setPrivacyOk(v => !v)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#D71920', flexShrink: 0 }} />
                 <span>Ich habe die Datenschutzerklärung gelesen und stimme ihr zu.</span>
               </label>
               <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13.5, lineHeight: 1.5, cursor: 'pointer' }}>
-                <input type="checkbox" checked={okTips} onChange={() => setOkTips(v => !v)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#2600FF', flexShrink: 0 }} />
+                <input type="checkbox" checked={okTips} onChange={() => setOkTips(v => !v)} style={{ width: 18, height: 18, marginTop: 1, accentColor: '#D71920', flexShrink: 0 }} />
                 <span>Ich möchte gelegentlich Tipps zur lokalen Sichtbarkeit per E-Mail und Telefon erhalten. Abmeldung jederzeit möglich.</span>
               </label>
             </div>

@@ -43,7 +43,7 @@ export default function OrderPage({ items }: { items: OrderItem[] }) {
               <a href="/preise" className="ul" style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--electric)' }}>Ändern</a>
             </div>
             {items.map(i => (
-              <div key={i.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, padding: '13px 0', borderTop: '1px solid #DAD8F5' }}>
+              <div key={i.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, padding: '13px 0', borderTop: '1px solid #F3C5C7' }}>
                 <span style={{ fontWeight: 600, fontSize: 15 }}>{i.name}</span>
                 <span style={{ whiteSpace: 'nowrap', fontSize: 15 }}><strong>{i.price} €</strong> <span style={{ fontSize: 12.5, color: 'var(--muted)' }}>{i.unit}</span></span>
               </div>

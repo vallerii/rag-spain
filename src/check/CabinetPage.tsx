@@ -330,7 +330,7 @@ export default function CabinetPage() {
           <div className="d-dots" style={{ position: 'absolute', right: -40, top: -40, width: 360, height: 360, opacity: 0.8 }} />
         </div>
         <div style={{ position: 'relative', maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px, 4vw, 48px)' }}>
-          <div style={{ height: 66, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, borderBottom: '1px solid #DAD8F5' }}>
+          <div style={{ height: 66, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, borderBottom: '1px solid #F3C5C7' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <Logo />
               <span className="ck-hide-sm" style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--muted)' }}>Kundenbereich</span>
@@ -387,7 +387,7 @@ export default function CabinetPage() {
           </div>
         )}
         {notice === 'bereits' && (
-          <div style={{ marginBottom: 18, padding: '14px 18px', borderRadius: 16, backgroundColor: '#EEEBFF', color: 'var(--ink)', fontSize: 14.5, lineHeight: 1.55 }}>
+          <div style={{ marginBottom: 18, padding: '14px 18px', borderRadius: 16, backgroundColor: '#FDEBEC', color: 'var(--ink)', fontSize: 14.5, lineHeight: 1.55 }}>
             <strong>Diese Firma prüfen wir bereits.</strong> Hier sehen Sie den aktuellen Stand, ein zweiter Check ist nicht nötig.
           </div>
         )}
@@ -421,7 +421,7 @@ export default function CabinetPage() {
                     const lit = done || active
                     return (
                       <div key={label}>
-                        <div style={{ height: 6, borderRadius: 3, backgroundColor: lit ? 'var(--electric)' : '#EEEBFF', opacity: active ? 0.45 : 1 }} />
+                        <div style={{ height: 6, borderRadius: 3, backgroundColor: lit ? 'var(--electric)' : '#FDEBEC', opacity: active ? 0.45 : 1 }} />
                         <p style={{ margin: '10px 0 0', fontSize: 14, fontWeight: lit ? 600 : 500, color: lit ? 'var(--ink)' : 'var(--muted)' }}>{label}</p>
                       </div>
                     )
@@ -477,11 +477,11 @@ export default function CabinetPage() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 18 }}>
                     <span className="d-tile d-tile-sm" aria-hidden>{CHAN_ICON[i] ?? CHAN_ICON[0]}</span>
                     {scored ? <span className="display" style={{ fontSize: 28, lineHeight: 1 }}>{c.score !== null ? c.score : '—'}<Delta d={diff.ch(c.key)} /></span>
-                      : <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--electric)', backgroundColor: '#EEEBFF', borderRadius: 999, padding: '5px 10px' }}>Wird geprüft</span>}
+                      : <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--electric)', backgroundColor: '#FDEBEC', borderRadius: 999, padding: '5px 10px' }}>Wird geprüft</span>}
                   </div>
                   <p style={{ fontWeight: 700, fontSize: 16, margin: '0 0 6px', letterSpacing: '-0.01em' }}>{c.title}</p>
                   <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--muted)', margin: 0, flex: 1 }}>{c.desc}</p>
-                  <div style={{ height: 5, borderRadius: 3, backgroundColor: '#EEEBFF', marginTop: 18 }}>
+                  <div style={{ height: 5, borderRadius: 3, backgroundColor: '#FDEBEC', marginTop: 18 }}>
                     {scored
                       ? <div style={{ width: c.score !== null ? `${c.score}%` : '0%', height: '100%', borderRadius: 3, backgroundColor: 'var(--electric)', transition: 'width 0.9s var(--ease)' }} />
                       : <div className="cab-skel" style={{ width: `${[38, 52, 30, 45][i] ?? 40}%`, height: '100%', borderRadius: 3, animationDelay: `${i * 0.2}s` }} />}

@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /* ── Stil D · Stadtplan (29.09.2026) ─────────────────────────
-   Hell, eine Schrift (Manrope, inkl. Kyrillisch), Akzent #2600FF.
+   Hell, eine Schrift (Manrope, inkl. Kyrillisch), Akzent #D71920.
    Kein Kursiv, keine Nummerierung 01/02 — siehe Projekt-Doc
    claude/style-d-stadtplan-2026-09-29.md. */
 /* Manrope selbst gehostet (DSGVO: keine Verbindung zu Google Fonts). Quelle: @fontsource-variable/manrope, SIL OFL. */
@@ -32,7 +32,7 @@
 
 @theme {
   --font-sans: 'Manrope', 'RAG Cyrillic Sans', ui-sans-serif, system-ui, sans-serif;
-  --color-violet: #2600FF;
+  --color-violet: #D71920;
   --color-ink: #0B0B1A;
 }
 
@@ -42,11 +42,11 @@
   --paper: #ffffff;
   --bone: #F7F7FB;
   --bone-2: #EFEEF8;
-  --electric: #2600FF;
-  --electric-2: #2600FF;
-  --electric-hover: #1A00B3;
-  --brand-soft: #ECEBFF;
-  --brand-line: #DAD8F5;
+  --electric: #D71920;
+  --electric-2: #D71920;
+  --electric-hover: #B3131A;
+  --brand-soft: #FDEBEC;
+  --brand-line: #F3C5C7;
   --muted: #4A4A63;
   --muted-dark: #8A89A3;
   --subtle: #8A89A3;
@@ -104,13 +104,13 @@ em, i, cite, address, dfn { font-style: normal; }
 .d-check svg { width: 15px; height: 15px; }
 .d-pill { display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 16px 0 8px; background: #fff; border: 1px solid var(--border); border-radius: 999px; box-shadow: 0 6px 20px rgba(11,11,26,.06); font-size: 14px; font-weight: 600; }
 .d-panel { position: relative; overflow: hidden; border-radius: 36px; }
-.d-dots { background-image: radial-gradient(#DAD8F5 2px, transparent 2px); background-size: 20px 20px; }
+.d-dots { background-image: radial-gradient(#F3C5C7 2px, transparent 2px); background-size: 20px 20px; }
 .d-link { font-weight: 700; color: var(--electric); text-decoration: none; }
 .d-link:hover { color: var(--electric-hover); }
 .d-link .arw { display: inline-block; transition: transform .3s var(--ease); }
 .d-link:hover .arw { transform: translateX(4px); }
 .d-lift { transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .25s ease; }
-.d-lift:hover { transform: translateY(-4px); box-shadow: 0 28px 70px rgba(38,0,255,.10); border-color: #D6D2FF; }
+.d-lift:hover { transform: translateY(-4px); box-shadow: 0 28px 70px rgba(215,25,32,.10); border-color: #F3C5C7; }
 @media (max-width: 900px) { .d-hide-md { display: none !important; } .d-stack-md { grid-template-columns: minmax(0,1fr) !important; } }
 
 /* ── Reveal on scroll ─────────────────────────────────────── */
@@ -179,7 +179,7 @@ em, i, cite, address, dfn { font-style: normal; }
 .btn-lg { font-size: 16px; font-weight: 700; padding: 17px 28px; border-radius: 14px; }
 .btn-md { font-size: 14.5px; font-weight: 700; padding: 13px 22px; border-radius: 12px; }
 .btn-sm { font-size: 13.5px; font-weight: 600; padding: 8px 14px; border-radius: 10px; }
-.btn-electric { background: var(--electric); color: #fff; --btn-fill: var(--electric-hover); --btn-fill-text: #fff; box-shadow: 0 10px 30px rgba(38,0,255,.28); }
+.btn-electric { background: var(--electric); color: #fff; --btn-fill: var(--electric-hover); --btn-fill-text: #fff; box-shadow: 0 10px 30px rgba(215,25,32,.28); }
 .btn-ink { background: var(--ink); color: #fff; --btn-fill: var(--electric); --btn-fill-text: #fff; }
 .btn-paper { background: #fff; color: var(--ink); border: 1px solid #DEDDEA; box-shadow: 0 4px 14px rgba(11,11,26,.06); --btn-fill: var(--ink); --btn-fill-text: #fff; }
 .btn-outline-dark { background: #fff; color: var(--ink); border: 1px solid #DEDDEA; box-shadow: 0 4px 14px rgba(11,11,26,.06); --btn-fill: var(--ink); --btn-fill-text: #fff; }

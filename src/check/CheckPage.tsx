@@ -98,7 +98,7 @@ function FieldRow({ id, label, value, original, placeholder, type, inputMode, au
   const status = !filled ? 'Nicht gefunden' : value.trim() === (original ?? '').trim() ? 'Gefunden ✓' : 'Ergänzt'
   const chip = status === 'Gefunden ✓'
     ? { color: '#0F7A3E', bg: '#E6F6EC' }
-    : status === 'Ergänzt' ? { color: 'var(--electric)', bg: '#EEEBFF' } : { color: 'var(--muted)', bg: 'var(--bone)' }
+    : status === 'Ergänzt' ? { color: 'var(--electric)', bg: '#FDEBEC' } : { color: 'var(--muted)', bg: 'var(--bone)' }
   return (
     <li style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
       <StatusDot ok={filled} />
@@ -388,7 +388,7 @@ export default function CheckPage() {
                       {results.map((r, i) => (
                         <button key={r.id} type="button" onClick={() => loadPlace(r.id)} className="ck-result"
                           style={{ display: 'flex', gap: 18, alignItems: 'center', width: '100%', padding: '24px 20px', border: 'none', borderTop: i ? '1px solid var(--line-soft)' : 'none', backgroundColor: '#fff', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', color: 'var(--ink)' }}>
-                          <span style={{ width: 38, height: 38, borderRadius: 12, backgroundColor: '#EEEBFF', color: 'var(--electric)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <span style={{ width: 38, height: 38, borderRadius: 12, backgroundColor: '#FDEBEC', color: 'var(--electric)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
                           </span>
                           <span style={{ flex: 1, minWidth: 0 }}>

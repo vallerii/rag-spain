@@ -12,7 +12,7 @@ type Hint = 'yes' | 'no' | 'unknown'
 const card: React.CSSProperties = { backgroundColor: '#fff', borderRadius: 22, border: '1px solid var(--line-soft)', padding: 'clamp(22px, 3vw, 32px)' }
 const field: React.CSSProperties = { width: '100%', boxSizing: 'border-box', padding: '11px 13px', border: '1px solid rgba(7,7,12,0.14)', borderRadius: 12, fontSize: 14.5, fontFamily: 'inherit', outline: 'none', color: 'var(--ink)', backgroundColor: '#fff' }
 const labelSt: React.CSSProperties = { display: 'block', fontSize: 12.5, fontWeight: 600, marginBottom: 6 }
-const opt = (on: boolean): React.CSSProperties => ({ flex: 1, padding: '11px 10px', borderRadius: 12, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', border: `1px solid ${on ? 'var(--electric)' : 'var(--line)'}`, backgroundColor: on ? '#EEEBFF' : '#fff', color: on ? 'var(--electric)' : 'var(--ink)' })
+const opt = (on: boolean): React.CSSProperties => ({ flex: 1, padding: '11px 10px', borderRadius: 12, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', border: `1px solid ${on ? 'var(--electric)' : 'var(--line)'}`, backgroundColor: on ? '#FDEBEC' : '#fff', color: on ? 'var(--electric)' : 'var(--ink)' })
 const PLACEHOLDER: Record<SourceKey, string> = { website: 'z. B. meinbetrieb.de', instagram: 'instagram.com/…', facebook: 'facebook.com/…', linkedin: 'linkedin.com/company/…', tiktok: 'tiktok.com/@…' }
 
 /** Hinweis unter «Ihre Auswahl», wenn keine Analyse läuft (Start bei null). */
