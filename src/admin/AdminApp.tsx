@@ -24,8 +24,8 @@ const h3: React.CSSProperties = { fontSize: 13, fontWeight: 700, letterSpacing: 
 const small: React.CSSProperties = { fontSize: 12.5, color: muted }
 const linkBtn: React.CSSProperties = { background: 'none', border: 0, cursor: 'pointer', font: 'inherit', fontSize: 14, color: accent, padding: 0 }
 const fmt = (d: string) => new Date(d).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' })
-const KIND: Record<Request['kind'], [string, string]> = { lead: ['Quiz', '#E8F3EC'], order: ['Paket', '#EEEBFF'], check: ['Check', '#FFF3DC'] }
-const STAGE_COLOR: Partial<Record<Stage, string>> = { new: '#D93A3A', report_sent: '#5B4BDB', won: '#1F7A4A', lost: '#8A8A8A' }
+const KIND: Record<Request['kind'], [string, string]> = { lead: ['Quiz', '#E8F3EC'], order: ['Paket', '#FDEBEC'], check: ['Check', '#FFF3DC'] }
+const STAGE_COLOR: Partial<Record<Stage, string>> = { new: '#D93A3A', report_sent: '#D71920', won: '#1F7A4A', lost: '#8A8A8A' }
 
 type Queue = 'mine' | 'free' | 'new' | 'quiz' | 'order' | 'check' | 'today' | 'report' | 'clients' | 'all'
 // Группы фильтров в списке: срочное (только если не 0), что показать, что ждёт действия.
@@ -635,7 +635,7 @@ function OfferCard({ clientKey, userId, kind, requestId, title, initial, preset,
 const stepDot = (state: 'done' | 'now' | 'todo') => ({
   width: 24, height: 24, borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700,
   color: state === 'done' ? '#fff' : state === 'now' ? accent : muted,
-  backgroundColor: state === 'done' ? '#1F7A4A' : state === 'now' ? '#EEEBFF' : '#F1F1F4',
+  backgroundColor: state === 'done' ? '#1F7A4A' : state === 'now' ? '#FDEBEC' : '#F1F1F4',
 } as React.CSSProperties)
 
 function InvoiceCard({ project, offer, onSaved, title = 'Rechnung' }: { project: Project; offer: Offer | null; onSaved: () => void; title?: string }) {
@@ -754,7 +754,7 @@ function PlanCard({ project, monthlyItems, onSaved }: { project: Project; monthl
           : (
             <>
               <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 14 }}>
-                <input type="checkbox" checked={!!project.monthly} disabled={busy} style={{ width: 18, height: 18, accentColor: '#2600FF' }}
+                <input type="checkbox" checked={!!project.monthly} disabled={busy} style={{ width: 18, height: 18, accentColor: '#D71920' }}
                   onChange={e => set(e.target.checked ? { monthly: true, next_report_at: project.next_report_at ?? in30() } : { monthly: false, next_report_at: null }, e.target.checked ? 'Erinnerung eingeschaltet.' : 'Erinnerung ausgeschaltet.')} />
                 Alle 30 Tage an einen neuen Bericht erinnern
               </label>
@@ -856,7 +856,7 @@ function Chat({ userId, messages, onSent }: { userId: string | null; messages: M
       <div style={{ display: 'grid', gap: 8, maxHeight: 360, overflowY: 'auto', marginBottom: 10 }}>
         {messages.length === 0 && <p style={small}>Keine Nachrichten.</p>}
         {messages.map(m => (
-          <div key={m.id} style={{ justifySelf: m.author === 'rag' ? 'end' : 'start', maxWidth: '85%', padding: '8px 11px', borderRadius: 12, backgroundColor: m.author === 'rag' ? '#EEEBFF' : '#F2F1EC', fontSize: 14, whiteSpace: 'pre-wrap' }}>
+          <div key={m.id} style={{ justifySelf: m.author === 'rag' ? 'end' : 'start', maxWidth: '85%', padding: '8px 11px', borderRadius: 12, backgroundColor: m.author === 'rag' ? '#FDEBEC' : '#F2F1EC', fontSize: 14, whiteSpace: 'pre-wrap' }}>
             {/* Nachrichtentext nicht übersetzen — er ist Inhalt, keine Oberfläche */}
             <span data-no-translate>{m.body}</span><div style={{ ...small, fontSize: 11.5, marginTop: 3 }}>{m.author === 'rag' ? 'Team' : 'Kunde'} · {fmt(m.created_at)}</div>
           </div>
@@ -1214,7 +1214,7 @@ function Team() {
         <p style={{ ...small, margin: '8px 0 0' }}>Der Link ist einmalig, 72 Stunden gültig und nur für diese E-Mail. Senden Sie ihn selbst an den Mitarbeiter (Messenger, E-Mail).</p>
         {err && <p role="alert" style={{ color: '#B3261E', fontSize: 14, margin: '10px 0 0' }}>{err}</p>}
         {link && (
-          <div style={{ marginTop: 12, padding: 12, borderRadius: 12, backgroundColor: '#F4F2FF', display: 'grid', gap: 8 }}>
+          <div style={{ marginTop: 12, padding: 12, borderRadius: 12, backgroundColor: '#FFF1F1', display: 'grid', gap: 8 }}>
             <code style={{ fontSize: 13, overflowWrap: 'anywhere' }}>{link}</code>
             <span style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
               <button type="button" className="btn btn-sm btn-electric" onClick={copy}>{copied ? 'Kopiert ✓' : 'Link kopieren'}</button>
@@ -1296,7 +1296,7 @@ function AcceptInvite() {
             <div style={{ display: 'flex', gap: 6 }}>
               {(['new', 'login'] as const).map(m => (
                 <button key={m} type="button" onClick={() => { setMode(m); setErr('') }}
-                  style={{ flex: 1, padding: '8px', borderRadius: 10, border: `1px solid ${mode === m ? accent : line}`, backgroundColor: mode === m ? '#F4F2FF' : '#fff', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13.5, fontWeight: 600 }}>
+                  style={{ flex: 1, padding: '8px', borderRadius: 10, border: `1px solid ${mode === m ? accent : line}`, backgroundColor: mode === m ? '#FFF1F1' : '#fff', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13.5, fontWeight: 600 }}>
                   {m === 'new' ? 'Konto anlegen' : 'Ich habe ein Konto'}
                 </button>
               ))}
