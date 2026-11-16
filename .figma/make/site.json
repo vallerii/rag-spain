@@ -1,7 +1,7 @@
 {
-  "title": "RAG — System für lokale Sichtbarkeit bei Google Maps, Google & KI-Suche",
-  "description": "RAG macht lokale Unternehmen in Deutschland dort sichtbar, wo Kunden heute suchen: Google Maps, Google, ChatGPT, Perplexity, Bewertungen und soziale Netzwerke. Kostenloser Sichtbarkeits-Check in 2 Minuten.",
-  "language": "de",
+  "title": "RAG — Sistema de visibilidad local en Google Maps, Google y búsqueda con IA",
+  "description": "RAG hace visibles a las empresas locales en España donde los clientes buscan hoy: Google Maps, Google, ChatGPT, Perplexity, reseñas y redes sociales. Análisis de visibilidad gratuito en 2 minutos.",
+  "language": "es",
   "robots": {
     "index": true
   },

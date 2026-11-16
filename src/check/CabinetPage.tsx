@@ -20,10 +20,10 @@ function allSources(list: Source[] | null | undefined): Source[] {
   return SOURCE_ORDER.map(key => list?.find(s => s.key === key) ?? { key, value: '', found: false })
 }
 
-// /kabinett — Kundenbereich nach dem Check (Prototyp «rag_client_cabinet_v1», 25.09.2026).
+// /area-cliente — Kundenbereich nach dem Check (Prototyp «rag_client_cabinet_v1», 25.09.2026).
 // Tabs: Übersicht · Bericht · Unternehmen · Nachrichten. Die vier Kanäle in derselben
 // Reihenfolge wie auf der Startseite: 01 KI-Suche · 02 Google Maps · 03 Website & Google Search · 04 Social Media.
-// Daten aus Supabase (checks, messages). Ohne Anmeldung → /login. Den Bericht trägt das Team
+// Daten aus Supabase (checks, messages). Ohne Anmeldung → /acceder. Den Bericht trägt das Team
 // im Table Editor ein (checks.report, status = 'ready'); bis dahin gibt es einen Beispielbericht zum Ansehen.
 
 type Tab = 'overview' | 'ergebnis' | 'offer' | 'report' | 'company' | 'termine' | 'messages' | 'konto'
@@ -142,7 +142,7 @@ export default function CabinetPage() {
   const [confirmDraft, setConfirmDraft] = useState<Source[]>([])
   const [confirming, setConfirming] = useState(false)
   const [confirmError, setConfirmError] = useState(false)
-  // Direkt nach der Registrierung (/kabinett?welcome=1) begrüßen, dann den Parameter entfernen.
+  // Direkt nach der Registrierung (/area-cliente?welcome=1) begrüßen, dann den Parameter entfernen.
   const [notice] = useState<'welcome' | 'neu' | 'bereits' | null>(() => {
     const q = new URLSearchParams(window.location.search)
     return q.get('welcome') === '1' ? 'welcome' : q.get('neu') === '1' ? 'neu' : q.get('bereits') === '1' ? 'bereits' : null
@@ -151,7 +151,7 @@ export default function CabinetPage() {
   useEffect(() => {
     (async () => {
       const u = await currentUser()
-      if (!u) { window.location.replace('/login?next=' + encodeURIComponent('/kabinett')); return }
+      if (!u) { window.location.replace('/acceder?next=' + encodeURIComponent('/area-cliente')); return }
       setUserEmail(u.email ?? '')
       const [c, o, m, mg, of, ap, ct, pj, qz] = await Promise.all([loadMyChecks(), loadLatestOrder(), loadMessages(), loadMyManager(), loadMyOffers(), loadMyAppointments(), loadMyContact(u), loadMyProjects(), loadMyQuiz()])
       // Gewählte Firma: ?firma=<id>, sonst die zuletzt geprüfte.
@@ -196,7 +196,7 @@ export default function CabinetPage() {
   useEffect(() => {
     if (loading) return
     const q = checks.length > 1 && check ? `?firma=${check.id}` : ''
-    history.replaceState(null, '', `/kabinett${q}${tab === 'overview' ? '' : `#${tab}`}`)
+    history.replaceState(null, '', `/area-cliente${q}${tab === 'overview' ? '' : `#${tab}`}`)
   }, [tab, loading, check, checks.length])
 
   // Geänderten Check in Auswahl und Liste übernehmen.
@@ -588,7 +588,7 @@ export default function CabinetPage() {
                   <div style={rowGrid}>
                     <span style={{ color: 'var(--muted)' }}>Bewertungen</span>
                     <span style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                      <StarsRow rating={place.rating} /><strong>{place.rating.toLocaleString('de-DE', { minimumFractionDigits: 1 })}</strong><span style={{ color: 'var(--muted)' }}>· {place.reviews}</span>
+                      <StarsRow rating={place.rating} /><strong>{place.rating.toLocaleString('es-ES', { minimumFractionDigits: 1 })}</strong><span style={{ color: 'var(--muted)' }}>· {place.reviews}</span>
                     </span>
                   </div>
                 )}
@@ -649,7 +649,7 @@ export default function CabinetPage() {
                   return (
                     <div key={m.id} style={{ alignSelf: mine ? 'flex-end' : 'flex-start', maxWidth: '82%', padding: '12px 16px', borderRadius: 18, fontSize: 14.5, lineHeight: 1.6, whiteSpace: 'pre-wrap', backgroundColor: mine ? 'var(--electric)' : 'var(--bone)', color: mine ? '#fff' : 'var(--ink)', borderBottomRightRadius: mine ? 6 : 18, borderBottomLeftRadius: mine ? 18 : 6 }}>
                       {m.body}
-                      <span style={{ display: 'block', fontSize: 11, opacity: 0.6, marginTop: 4 }}>{new Date(m.created_at).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+                      <span style={{ display: 'block', fontSize: 11, opacity: 0.6, marginTop: 4 }}>{new Date(m.created_at).toLocaleString('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
                     </div>
                   )
                 })}

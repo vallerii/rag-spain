@@ -10,7 +10,7 @@ const root = process.cwd()
 const dist = path.join(root, 'dist')
 const SITE_URL = (process.env.VITE_SITE_URL || process.env.SITE_URL || 'https://rag-theta-one.vercel.app').replace(/\/+$/, '')
 const OG_IMAGE = `${SITE_URL}/og-image.png`
-const SITE_NAME = 'RAG Regionale Agentur'
+const SITE_NAME = 'RAG Agencia Regional'
 
 const { render, prerenderRoutes, organizationJsonLd, COMPANY } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href)
 
@@ -24,6 +24,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replac
 function page(route, html, meta) {
   const url = SITE_URL + (route === '/' ? '/' : route)
   let out = template
+    .replace(/<html lang="[^"]*"/, '<html lang="es"')
     // Statische Meta-Angaben aus site.json entfernen — sie werden pro Seite neu gesetzt.
     .replace(/\s*<meta (name|property)="(description|robots|og:[a-z_:]+|twitter:[a-z_:]+)"[^>]*>/g, '')
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(meta.title)}</title>`)
@@ -35,7 +36,7 @@ function page(route, html, meta) {
     `<meta property="og:description" content="${esc(meta.description)}" />`,
     `<meta property="og:url" content="${esc(url)}" />`,
     `<meta property="og:site_name" content="${esc(SITE_NAME)}" />`,
-    `<meta property="og:locale" content="de_DE" />`,
+    `<meta property="og:locale" content="es_ES" />`,
     `<meta property="og:image" content="${OG_IMAGE}" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
@@ -74,7 +75,7 @@ for (const route of routes) {
 
 // Sitemap und robots.txt aus derselben Routenliste — immer aktuell.
 const today = new Date().toISOString().slice(0, 10)
-const prio = r => (r === '/' ? '1.0' : /^\/(services|preise)/.test(r) ? '0.8' : r.startsWith('/ratgeber') ? '0.7' : '0.5')
+const prio = r => (r === '/' ? '1.0' : /^\/(servicios|precios)/.test(r) ? '0.8' : r.startsWith('/guia') ? '0.7' : '0.5')
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes.map(r => `  <url><loc>${SITE_URL}${r === '/' ? '/' : r}</loc><lastmod>${today}</lastmod><priority>${prio(r)}</priority></url>`).join('\n')}

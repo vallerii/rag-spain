@@ -4,7 +4,7 @@ import {
   type CheckRow, type OrderRow, type QuizLead, type SourceKey,
 } from './data'
 
-// Kundenbereich nach Paket-Anfrage (/preise → Konto) oder Quiz: Angaben zum Unternehmen selbst eintragen.
+// Kundenbereich nach Paket-Anfrage (/precios → Konto) oder Quiz: Angaben zum Unternehmen selbst eintragen.
 // Daraus entsteht eine Firma (Check) mit bestätigten Quellen; die Analyse sucht das Google-Profil selbst,
 // wenn der Kunde «Ja» oder «Weiß nicht» angibt. Quiz «Noch nichts davon»: nur Name, Branche, Ort — Start bei null.
 
@@ -84,7 +84,7 @@ export default function CompanyForm({ order, quiz, checks, contact }: {
     await attachRequests(id, order?.id ?? null)
     // Analyse im Hintergrund starten (kann bis zu einer Minute dauern) — nicht darauf warten.
     if (isNew && !isScratch) { markAuditStarted(id); void runAudit(id); await new Promise(r => setTimeout(r, 400)) }
-    window.location.href = `/kabinett?firma=${id}`
+    window.location.href = `/area-cliente?firma=${id}`
   }
 
   return (

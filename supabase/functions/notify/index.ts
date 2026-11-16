@@ -64,7 +64,7 @@ async function clientInfo(key: string): Promise<{ person: Person | null; company
 
 const when = (v: unknown) => {
   const d = new Date(str(v))
-  return isNaN(d.getTime()) ? '' : d.toLocaleString('de-DE', { timeZone: 'Europe/Berlin', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + ' Uhr'
+  return isNaN(d.getTime()) ? '' : d.toLocaleString('es-ES', { timeZone: 'Europe/Madrid', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + ' h'
 }
 
 async function mailsFor(a: Activity): Promise<Mail[]> {
@@ -78,9 +78,9 @@ async function mailsFor(a: Activity): Promise<Mail[]> {
     for (const p of to) out.push({ to: p, subject, title, lines, cta: { label: 'Im Admin öffnen', href: `${SITE}/rag-intern` }, pause })
   }
   const client = info.person
-  const hello = client?.name ? `Hallo ${client.name.split(' ')[0]},` : 'Hallo,'
+  const hello = client?.name ? `Hola, ${client.name.split(' ')[0]}:` : 'Hola:'
   const toClient = (subject: string, title: string, lines: string[], hash = '', pause?: Mail['pause']) => {
-    if (client && a.client_key.startsWith('user:')) out.push({ to: client, subject, title, lines: [hello, ...lines], cta: { label: 'Zum Kundenbereich', href: `${SITE}/kabinett${hash}` }, pause })
+    if (client && a.client_key.startsWith('user:')) out.push({ to: client, subject, title, lines: [hello, ...lines], cta: { label: 'Ir al área de cliente', href: `${SITE}/area-cliente${hash}` }, pause })
   }
 
   switch (a.kind) {
@@ -110,8 +110,8 @@ async function mailsFor(a: Activity): Promise<Mail[]> {
       } else {
         const actor = await profile(a.actor)
         if (actor && actor.role !== 'client') { // nur echte Nachrichten aus dem Team, keine automatische Begrüßung
-          toClient('Neue Nachricht von Ihrem Ansprechpartner', 'Sie haben eine neue Nachricht',
-            [`${actor.name || 'Ihr Ansprechpartner'} hat Ihnen im Kundenbereich geschrieben.`], '#messages', { kind: 'message', minutes: MESSAGE_PAUSE_MIN })
+          toClient('Nuevo mensaje de su persona de contacto', 'Tiene un mensaje nuevo',
+            [`${actor.name || 'Su persona de contacto'} le ha escrito en el área de cliente.`], '#messages', { kind: 'message', minutes: MESSAGE_PAUSE_MIN })
         }
       }
       break
@@ -120,53 +120,53 @@ async function mailsFor(a: Activity): Promise<Mail[]> {
     case 'assigned': {
       if (!d.to) break
       const m = await profile(d.to)
-      const name = m?.name || 'ein Ansprechpartner aus unserem Team'
-      toClient('Ihr persönlicher Ansprechpartner', `${m?.name || 'Ihr Ansprechpartner'} betreut Ihre Anfrage`,
-        [`ab jetzt betreut ${name} Ihre Anfrage persönlich.`, 'Fragen können Sie jederzeit im Kundenbereich stellen.'], '', { kind: 'assigned', minutes: 60 })
+      const name = m?.name || 'una persona de nuestro equipo'
+      toClient('Su persona de contacto', `${m?.name || 'Su persona de contacto'} lleva su solicitud`,
+        [`a partir de ahora ${name} lleva su solicitud personalmente.`, 'Puede hacer sus preguntas en cualquier momento en el área de cliente.'], '', { kind: 'assigned', minutes: 60 })
       break
     }
     case 'report_published':
-      toClient('Ihr Bericht ist fertig', 'Die Analyse ist abgeschlossen',
-        ['wir haben die Analyse Ihres Unternehmens abgeschlossen. Ihr Bericht mit Bewertung und Empfehlungen liegt im Kundenbereich.'], '#report')
+      toClient('Su informe está listo', 'El análisis ha terminado',
+        ['hemos terminado el análisis de su empresa. Su informe con la valoración y las recomendaciones está en el área de cliente.'], '#report')
       break
     case 'offer_sent':
-      toClient('Ihr Angebot ist da', 'Ihr Angebot ist da', ['wir haben ein Angebot für Ihr Unternehmen zusammengestellt. Sie finden es im Kundenbereich.'], '#offer')
+      toClient('Su oferta está lista', 'Su oferta está lista', ['hemos preparado una oferta para su empresa. La encontrará en el área de cliente.'], '#offer')
       break
     case 'appointment':
-      toClient('Ihr Termin', 'Termin eingetragen', [`Ihr Termin „${str(d.title) || 'Gespräch'}“ ist für ${when(d.at)} eingetragen.`], '#termine')
+      toClient('Su cita', 'Cita registrada', [`Su cita «${str(d.title) || 'Conversación'}» está registrada para el ${when(d.at)}.`], '#termine')
       break
     case 'appointment_changed':
-      if (d.status === 'cancelled') toClient('Termin abgesagt', 'Termin abgesagt', [`Ihr Termin „${str(d.title) || 'Gespräch'}“ am ${when(d.at)} wurde abgesagt.`], '#termine')
-      else if (d.status === 'planned') toClient('Termin geändert', 'Neuer Termin', [`Ihr Termin „${str(d.title) || 'Gespräch'}“ ist jetzt für ${when(d.at)} eingetragen.`], '#termine')
+      if (d.status === 'cancelled') toClient('Cita cancelada', 'Cita cancelada', [`Su cita «${str(d.title) || 'Conversación'}» del ${when(d.at)} se ha cancelado.`], '#termine')
+      else if (d.status === 'planned') toClient('Cita modificada', 'Nueva fecha', [`Su cita «${str(d.title) || 'Conversación'}» está ahora registrada para el ${when(d.at)}.`], '#termine')
       break
     case 'project': {
       const s = str(d.status)
-      if (s === 'paid') toClient('Zahlung eingegangen', 'Danke, Ihre Zahlung ist eingegangen', ['wir haben Ihre Zahlung erhalten und bereiten den Start vor.'])
-      else if (s === 'in_progress') toClient('Wir arbeiten an Ihrem Projekt', 'Die Umsetzung hat begonnen', ['wir haben mit der Umsetzung begonnen. Den Stand sehen Sie jederzeit im Kundenbereich.'])
-      else if (s === 'result') toClient('Ihr Ergebnis ist da', 'Ihr Ergebnis ist da', ['die Arbeit ist erledigt. Das Ergebnis sehen Sie im Kundenbereich.'], '#ergebnis')
-      else if (s === 'support' || s === 'done') toClient('Projekt abgeschlossen', 'Ihr Projekt ist abgeschlossen', ['Ihr Projekt ist abgeschlossen. Danke für die Zusammenarbeit!'])
+      if (s === 'paid') toClient('Pago recibido', 'Gracias, hemos recibido su pago', ['hemos recibido su pago y estamos preparando el inicio.'])
+      else if (s === 'in_progress') toClient('Trabajamos en su proyecto', 'La ejecución ha empezado', ['hemos empezado con la ejecución. El estado lo ve en cualquier momento en el área de cliente.'])
+      else if (s === 'result') toClient('Su resultado está listo', 'Su resultado está listo', ['el trabajo está hecho. El resultado lo ve en el área de cliente.'], '#ergebnis')
+      else if (s === 'support' || s === 'done') toClient('Proyecto finalizado', 'Su proyecto ha finalizado', ['su proyecto ha finalizado. ¡Gracias por la colaboración!'])
       break
     }
     case 'invoice_sent': {
-      const amount = typeof d.amount === 'number' ? ` über ${d.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}` : ''
-      toClient('Ihre Rechnung', 'Ihre Rechnung ist da', [`die Rechnung${d.number ? ` Nr. ${str(d.number)}` : ''}${amount} liegt im Kundenbereich.`])
+      const amount = typeof d.amount === 'number' ? ` por ${d.amount.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}` : ''
+      toClient('Su factura', 'Su factura está lista', [`la factura${d.number ? ` n.º ${str(d.number)}` : ''}${amount} está en el área de cliente.`])
       break
     }
   }
   // Satzanfang nach der Anrede groß schreiben
-  for (const m of out) m.lines = m.lines.map((l, i) => (i === 1 && m.lines[0].startsWith('Hallo') ? l.charAt(0).toUpperCase() + l.slice(1) : l))
+  for (const m of out) m.lines = m.lines.map((l, i) => (i === 1 && m.lines[0].startsWith('Hola') ? l.charAt(0).toUpperCase() + l.slice(1) : l))
   return out
 }
 
 function html(m: Mail): string {
   const p = m.lines.map(l => `<p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#2B2A3A">${esc(l)}</p>`).join('')
-  return `<!doctype html><html lang="de"><body style="margin:0;padding:0;background:#F4F3FA;font-family:Arial,Helvetica,sans-serif">
+  return `<!doctype html><html lang="es"><body style="margin:0;padding:0;background:#F4F3FA;font-family:Arial,Helvetica,sans-serif">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F3FA;padding:32px 12px"><tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:18px;padding:32px">
 <tr><td style="font-size:20px;font-weight:800;color:#0B0B1A;padding-bottom:22px">RAG<span style="color:#2600FF">.</span></td></tr>
 <tr><td><h1 style="margin:0 0 18px;font-size:22px;line-height:1.25;color:#0B0B1A">${esc(m.title)}</h1>${p}
 <a href="${esc(m.cta.href)}" style="display:inline-block;margin-top:8px;background:#2600FF;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:13px 22px;border-radius:12px">${esc(m.cta.label)}</a></td></tr>
-<tr><td style="padding-top:28px;font-size:12px;line-height:1.6;color:#8A88A0">Diese E-Mail wurde automatisch versendet. Bitte antworten Sie im Kundenbereich, damit Ihre Nachricht direkt bei Ihrem Ansprechpartner ankommt.<br>RAG · <a href="${esc(SITE)}" style="color:#8A88A0">${esc(SITE.replace(/^https?:\/\//, ''))}</a></td></tr>
+<tr><td style="padding-top:28px;font-size:12px;line-height:1.6;color:#8A88A0">Este email se ha enviado automáticamente. Responda en el área de cliente para que su mensaje llegue directamente a su persona de contacto.<br>RAG · <a href="${esc(SITE)}" style="color:#8A88A0">${esc(SITE.replace(/^https?:\/\//, ''))}</a></td></tr>
 </table></td></tr></table></body></html>`
 }
 const text = (m: Mail) => [m.title, '', ...m.lines, '', `${m.cta.label}: ${m.cta.href}`].join('\n')

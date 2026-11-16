@@ -49,7 +49,7 @@ export function turnstileToken(): Promise<string | null> {
         ts.render(host, {
           sitekey: SITE_KEY,
           appearance: 'interaction-only', // nur sichtbar, wenn Cloudflare wirklich nachfragen muss
-          language: document.documentElement.lang || 'de',
+          language: document.documentElement.lang || 'es',
           callback: (t: string) => { clearTimeout(timer); resolve(t) },
           'error-callback': () => { clearTimeout(timer); reject(new Error('turnstile')) },
         })

@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react'
 import { searchCompanies, type Suggestion } from './data'
 
-// Suchfeld «Unternehmen in Google finden» — Startseite (BusinessCheck), Leistungsseiten und /check.
+// Suchfeld «Unternehmen in Google finden» — Startseite (BusinessCheck), Leistungsseiten und /analisis.
 // Keine Vorschläge beim Tippen: erst «Finden» klicken → eine Google-Anfrage pro Suche.
 // Startseite/Leistungsseiten (06.10.2026): Treffer erscheinen direkt unter dem Feld.
-//   Treffer wählen → /check?place=<id> → sofort Schritt 2 (Kundenbereich).
-//   «Mein Unternehmen ist nicht in der Liste» → /check?q=<text>&manual=1 → Formular ohne Google-Profil.
+//   Treffer wählen → /analisis?place=<id> → sofort Schritt 2 (Kundenbereich).
+//   «Mein Unternehmen ist nicht in der Liste» → /analisis?q=<text>&manual=1 → Formular ohne Google-Profil.
 
 export function goToCheck(params: { place?: string; q?: string; manual?: boolean }) {
   const sp = new URLSearchParams()
@@ -14,8 +14,8 @@ export function goToCheck(params: { place?: string; q?: string; manual?: boolean
   if (params.manual) sp.set('manual', '1')
   // Woher kam die Anfrage (Startseite oder eine Leistungsseite)? Wird im Check gespeichert.
   const from = window.location.pathname
-  if (from !== '/check') sp.set('from', from)
-  window.location.href = `/check?${sp.toString()}`
+  if (from !== '/analisis') sp.set('from', from)
+  window.location.href = `/analisis?${sp.toString()}`
 }
 
 const PinIcon = () => (

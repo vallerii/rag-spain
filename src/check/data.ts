@@ -9,7 +9,7 @@
 //   • Analyse            → Edge Function audit-collect (nach «Analyse starten»): Google-Profil,
 //                          Wettbewerber, Website-Prüfung → checks.audit + checks.report_draft.
 //   • Anmeldung          → Supabase Auth: E-Mail + Passwort (ohne E-Mail-Bestätigung),
-//                          «Passwort vergessen» per Link → /passwort-neu.
+//                          «Passwort vergessen» per Link → /nueva-contrasena.
 //   • Speichern          → Supabase-Tabellen checks + messages (Schema: supabase/schema.sql).
 //
 // Solange VITE_PLACES_PROXY nicht gesetzt ist, liefert die Unternehmenssuche
@@ -59,25 +59,25 @@ export const SOURCE_LABELS: Record<SourceKey, string> = {
 }
 export const SOURCE_ORDER: SourceKey[] = ['website', 'instagram', 'facebook', 'linkedin', 'tiktok']
 
-// ── Beispieldaten (erfundene Betriebe in Deutschland) ─────────────────────────────────
+// ── Beispieldaten (empresas inventadas en España) ────────────────────────────────
 const DEMO_PLACES: Place[] = [
-  { id: 'demo-1', name: 'Schneider Dachtechnik GmbH', address: 'Eppendorfer Weg 48, 20259 Hamburg', city: 'Hamburg', category: 'Dachdecker', rating: 4.7, reviews: 38, website: 'schneider-dachtechnik.de', phone: '040 1234500', mapsUrl: '' },
-  { id: 'demo-2', name: 'Elektro Becker', address: 'Leopoldstraße 120, 80802 München', city: 'München', category: 'Elektriker', rating: 4.9, reviews: 112, website: 'elektro-becker-muenchen.de', phone: '089 2233440', mapsUrl: '' },
-  { id: 'demo-3', name: 'Friseursalon Haarwerk', address: 'Königsbrücker Straße 22, 01099 Dresden', city: 'Dresden', category: 'Friseur', rating: 4.6, reviews: 214, website: 'haarwerk-dresden.de', phone: '0351 9988770', mapsUrl: '' },
-  { id: 'demo-4', name: 'Malerbetrieb Klein & Sohn', address: 'Böblinger Straße 70, 70199 Stuttgart', city: 'Stuttgart', category: 'Malerbetrieb', rating: 4.4, reviews: 27, website: null, phone: '0711 4455660', mapsUrl: '' },
-  { id: 'demo-5', name: 'Physiotherapie am Ring', address: 'Hohenzollernring 5, 50672 Köln', city: 'Köln', category: 'Physiotherapeut', rating: 4.8, reviews: 96, website: 'physio-am-ring.de', phone: '0221 5566770', mapsUrl: '' },
-  { id: 'demo-6', name: 'Autowerkstatt Weber', address: 'Fürther Straße 200, 90429 Nürnberg', city: 'Nürnberg', category: 'Autowerkstatt', rating: 4.3, reviews: 151, website: 'kfz-weber-nuernberg.de', phone: '0911 667788', mapsUrl: '' },
-  { id: 'demo-7', name: 'Sanitär Hoffmann', address: 'Lister Meile 30, 30161 Hannover', city: 'Hannover', category: 'Sanitärinstallateur', rating: 4.5, reviews: 64, website: 'sanitaer-hoffmann.de', phone: '0511 7788990', mapsUrl: '' },
-  { id: 'demo-8', name: 'Gartenbau Grünwerk', address: 'Wilhelmshöher Allee 15, 34117 Kassel', city: 'Kassel', category: 'Garten- und Landschaftsbau', rating: 4.9, reviews: 41, website: 'gartenbau-gruenwerk.de', phone: '0561 123450', mapsUrl: '' },
+  { id: 'demo-1', name: 'Cubiertas Navarro S.L.', address: 'Calle de Alcalá 210, 28028 Madrid', city: 'Madrid', category: 'Tejados y cubiertas', rating: 4.7, reviews: 38, website: 'cubiertasnavarro.es', phone: '910 123 450', mapsUrl: '' },
+  { id: 'demo-2', name: 'Electricidad García', address: 'Carrer de Sants 120, 08014 Barcelona', city: 'Barcelona', category: 'Electricista', rating: 4.9, reviews: 112, website: 'electricidadgarcia.es', phone: '932 233 440', mapsUrl: '' },
+  { id: 'demo-3', name: 'Peluquería Marina', address: 'Calle de Colón 22, 46004 Valencia', city: 'Valencia', category: 'Peluquería', rating: 4.6, reviews: 214, website: 'peluqueriamarina.es', phone: '963 998 877', mapsUrl: '' },
+  { id: 'demo-4', name: 'Pinturas Ruiz e Hijos', address: 'Avenida de la Constitución 70, 41001 Sevilla', city: 'Sevilla', category: 'Pintor', rating: 4.4, reviews: 27, website: null, phone: '954 445 566', mapsUrl: '' },
+  { id: 'demo-5', name: 'Fisioterapia Centro', address: 'Paseo de la Independencia 5, 50004 Zaragoza', city: 'Zaragoza', category: 'Fisioterapeuta', rating: 4.8, reviews: 96, website: 'fisiocentro-zaragoza.es', phone: '976 556 677', mapsUrl: '' },
+  { id: 'demo-6', name: 'Taller Martínez', address: 'Calle Larios 20, 29005 Málaga', city: 'Málaga', category: 'Taller mecánico', rating: 4.3, reviews: 151, website: 'tallermartinez.es', phone: '952 667 788', mapsUrl: '' },
+  { id: 'demo-7', name: 'Fontanería López', address: 'Gran Vía 30, 48011 Bilbao', city: 'Bilbao', category: 'Fontanero', rating: 4.5, reviews: 64, website: 'fontanerialopez.es', phone: '944 778 899', mapsUrl: '' },
+  { id: 'demo-8', name: 'Jardines Verdemar', address: 'Calle Mayor 15, 03002 Alicante', city: 'Alicante', category: 'Jardinería y paisajismo', rating: 4.9, reviews: 41, website: 'jardinesverdemar.es', phone: '965 123 450', mapsUrl: '' },
 ]
 
 const wait = (ms: number) => new Promise(r => setTimeout(r, ms))
-const norm = (s: string) => s.toLocaleLowerCase('de-DE').replace(/\s+/g, ' ').trim()
+const norm = (s: string) => s.toLocaleLowerCase('es-ES').replace(/\s+/g, ' ').trim()
 
 /** Ergebnis ohne Treffer in den Beispieldaten: aus der Eingabe gebautes Unternehmen. */
 function syntheticPlace(query: string): Place {
   const name = query.trim().replace(/\s+/g, ' ')
-  return { id: 'demo-q:' + encodeURIComponent(name), name, address: 'Berlin, Deutschland', city: 'Berlin', category: 'Unternehmen', rating: null, reviews: 0, website: null, phone: null, mapsUrl: '' }
+  return { id: 'demo-q:' + encodeURIComponent(name), name, address: 'Madrid, España', city: 'Madrid', category: 'Empresa', rating: null, reviews: 0, website: null, phone: null, mapsUrl: '' }
 }
 
 function toSuggestion(p: Place): Suggestion {
@@ -224,7 +224,7 @@ export async function signInWithGoogle(next: string): Promise<AuthError | null> 
 }
 
 export async function sendPasswordReset(email: string): Promise<AuthError | null> {
-  const { error } = await (await getSupabase()).auth.resetPasswordForEmail(email.trim(), { redirectTo: `${window.location.origin}/passwort-neu`, captchaToken: await captcha() })
+  const { error } = await (await getSupabase()).auth.resetPasswordForEmail(email.trim(), { redirectTo: `${window.location.origin}/nueva-contrasena`, captchaToken: await captcha() })
   return error ? mapAuthError(error) : null
 }
 
@@ -269,7 +269,7 @@ export type CheckRow = {
   created_at: string
   /** Stand der Anfrage im Team; 'lost' = abgeschlossen ohne Auftrag */
   stage?: string
-  /** Auf /preise gewählte Leistungen */
+  /** Auf /precios gewählte Leistungen */
   wish?: OrderItem[] | null
   /** Start bei null (Quiz: «Noch nichts davon») — keine Analyse, Termin sofort */
   scratch?: boolean
@@ -290,7 +290,7 @@ export async function claimRememberedLead() {
 }
 
 export async function createCheck(input: { place: Place; region: string; sources: Source[]; contact: Contact; sourcePage: string | null
-  /** Quellen hat der Kunde schon in /check gesehen (Anmeldung = Bestätigung) → Analyse kann sofort starten */
+  /** Quellen hat der Kunde schon in /analisis gesehen (Anmeldung = Bestätigung) → Analyse kann sofort starten */
   confirmed?: boolean
   /** Firma im Kundenbereich selbst eingetragen: Quellen gelten als bestätigt */
   manual?: { profileHint: 'yes' | 'no' | 'unknown'; scratch: boolean } }): Promise<string | null> {

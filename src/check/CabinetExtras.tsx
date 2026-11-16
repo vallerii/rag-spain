@@ -106,7 +106,7 @@ export function OfferPanel({ offer, onAccepted, booking = null }: { offer: Clien
             ? <a href={booking} target="_blank" rel="noopener noreferrer" className="btn btn-lg btn-outline-light">Erst im Gespräch klären</a>
             : <span style={{ fontSize: 13, color: 'var(--muted)' }}>Fragen dazu? Schreiben Sie uns im Chat.</span>}
           <p style={{ flexBasis: '100%', fontSize: 12.5, lineHeight: 1.6, color: 'var(--muted)', margin: '4px 0 0' }}>
-            Mit «Angebot annehmen» beauftragen Sie die Leistungen verbindlich. Es gelten unsere <a href="/agb" target="_blank" rel="noopener" className="ul">AGB</a>; {priceNote()}
+            Mit «Angebot annehmen» beauftragen Sie die Leistungen verbindlich. Es gelten unsere <a href="/condiciones" target="_blank" rel="noopener" className="ul">AGB</a>; {priceNote()}
           </p>
         </div>
       )}
@@ -180,7 +180,7 @@ export function CompanySwitcher({ checks, current, onSelect, title }: { checks: 
     return () => { document.removeEventListener('mousedown', close); document.removeEventListener('keydown', close) }
   }, [open])
   const h1: React.CSSProperties = { fontSize: 'clamp(28px, 4vw, 50px)', margin: '0 0 10px' }
-  const addLink = <a href="/check" className="ul" style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--electric)' }}>+ Weitere Firma prüfen</a>
+  const addLink = <a href="/analisis" className="ul" style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--electric)' }}>+ Weitere Firma prüfen</a>
   if (checks.length < 2) return <><h1 className="display" style={h1}>{title}</h1>{checks.length === 1 && <p style={{ margin: '0 0 10px' }}>{addLink}</p>}</>
   return (
     <div ref={ref} style={{ position: 'relative' }}>

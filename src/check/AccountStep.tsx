@@ -4,7 +4,7 @@ import type { User } from '@supabase/supabase-js'
 import { authErrorText, currentUser, signIn, signInWithGoogle, signOut, signUp, type AuthError, type Contact } from './data'
 
 // Schritt «Kundenbereich»: Registrieren ODER Anmelden — umschaltbar, dazu Anmeldung mit Google.
-// Wird im Sichtbarkeits-Check (/check) und bei Paket-Anfragen (/anfrage) verwendet.
+// Wird im Sichtbarkeits-Check (/analisis) und bei Paket-Anfragen (/solicitud) verwendet.
 // Nach erfolgreicher Anmeldung ruft der Schritt onAuthed auf; die Seite legt dann
 // Check bzw. Anfrage an und leitet in den Kundenbereich weiter.
 // googleNext: Pfad, zu dem Google nach der Anmeldung zurückleitet. Ohne Angabe gibt es keinen Google-Knopf.
@@ -146,7 +146,7 @@ export default function AccountStep({ submitLabel, loggedInLabel, onAuthed, onBa
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10 }}>
                 <label style={labelSt} htmlFor="acc-password">Passwort</label>
                 {mode === 'login' && (
-                  <a href={`/passwort-vergessen${email.trim() ? `?email=${encodeURIComponent(email.trim())}` : ''}`} target="_blank" rel="noopener" className="ul" style={{ fontSize: 12.5, color: 'var(--electric)', fontWeight: 600 }}>Passwort vergessen?</a>
+                  <a href={`/recuperar-contrasena${email.trim() ? `?email=${encodeURIComponent(email.trim())}` : ''}`} target="_blank" rel="noopener" className="ul" style={{ fontSize: 12.5, color: 'var(--electric)', fontWeight: 600 }}>Passwort vergessen?</a>
                 )}
               </div>
               <PasswordField value={password} onChange={setPassword} autoComplete={mode === 'register' ? 'new-password' : 'current-password'} />
@@ -186,7 +186,7 @@ export default function AccountStep({ submitLabel, loggedInLabel, onAuthed, onBa
         {onBack && <button type="button" className="btn btn-lg btn-outline-light" onClick={onBack}>Zurück</button>}
       </div>
       <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--muted)', margin: '18px 0 0' }}>
-        Wir nutzen Ihre Angaben nur für Ihre Anfrage und die Rückmeldung dazu. Details in der <a href="/datenschutz" target="_blank" rel="noopener" className="ul">Datenschutzerklärung</a>.
+        Wir nutzen Ihre Angaben nur für Ihre Anfrage und die Rückmeldung dazu. Details in der <a href="/privacidad" target="_blank" rel="noopener" className="ul">Datenschutzerklärung</a>.
       </p>
     </form>
   )

@@ -3,7 +3,7 @@ import AccountStep from './AccountStep'
 import { Logo, useNoindex } from './CheckPage'
 import { createOrder, orderTotal, type OrderItem } from './data'
 
-// /anfrage?pkg=onepager|local|aiplus|profile&social=1 — Paket-Anfrage, Schritt 2 von 2.
+// /solicitud?pkg=onepager|local|aiplus|profile&social=1 — Paket-Anfrage, Schritt 2 von 2.
 // Schritt 1 ist das Auswahlfenster (Preise / Startseite / Leistungsseiten).
 // Hier: Konto anlegen oder anmelden → Anfrage speichern → Kundenbereich (dort Angaben zum Unternehmen).
 
@@ -14,7 +14,7 @@ export default function OrderPage({ items }: { items: OrderItem[] }) {
   const createAndGo = async (): Promise<string | null> => {
     const id = await createOrder(items, from)
     if (!id) return 'Das Speichern hat nicht geklappt. Bitte versuchen Sie es noch einmal.'
-    window.location.href = '/kabinett?welcome=1'
+    window.location.href = '/area-cliente?welcome=1'
     return null
   }
 
@@ -26,7 +26,7 @@ export default function OrderPage({ items }: { items: OrderItem[] }) {
           <p className="eyebrow ck-hide-sm" style={{ color: 'var(--muted)' }}>Paket anfragen</p>
           <span style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <LangSwitch />
-            <a href="/preise" className="ul" style={{ fontSize: 14, fontWeight: 500, color: 'var(--ink)' }}>Abbrechen</a>
+            <a href="/precios" className="ul" style={{ fontSize: 14, fontWeight: 500, color: 'var(--ink)' }}>Abbrechen</a>
           </span>
         </div>
         <div style={{ height: 3, backgroundColor: 'var(--line-soft)' }}>
@@ -40,7 +40,7 @@ export default function OrderPage({ items }: { items: OrderItem[] }) {
           <div style={{ position: 'relative' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, marginBottom: 14 }}>
               <p className="kick">Ihre Auswahl</p>
-              <a href="/preise" className="ul" style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--electric)' }}>Ändern</a>
+              <a href="/precios" className="ul" style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--electric)' }}>Ändern</a>
             </div>
             {items.map(i => (
               <div key={i.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, padding: '13px 0', borderTop: '1px solid #F3C5C7' }}>
@@ -64,7 +64,7 @@ export default function OrderPage({ items }: { items: OrderItem[] }) {
             <>
               <h1 className="display" style={{ fontSize: 'clamp(26px, 3vw, 36px)', margin: '0 0 12px' }}>Kein Paket gewählt</h1>
               <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--muted)', margin: '0 0 24px' }}>Wählen Sie zuerst ein Paket auf der Preisseite.</p>
-              <a href="/preise" className="btn btn-lg btn-electric">Zu den Paketen <span className="arw">→</span></a>
+              <a href="/precios" className="btn btn-lg btn-electric">Zu den Paketen <span className="arw">→</span></a>
             </>
           ) : (
             <>

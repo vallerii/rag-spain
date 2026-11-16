@@ -1,32 +1,35 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// I18N — DE / RU language switch without separate URLs.
+// I18N — ES (Hauptsprache) / RU language switch without separate URLs.
 //
-// The site copy lives in German inside App.tsx. When the visitor picks
-// Russian, a MutationObserver swaps every German text node and a few
-// attributes (placeholder, aria-label, title, alt) for its entry in ru.json.
-// React keeps working with the German source, so logic that compares labels
-// is untouched, and new German copy simply stays German until it is added to
-// ru.json (key = German text with collapsed whitespace, value = Russian).
+// RAG Spain: the site is shown in Spanish. The copy inherited from RAG Germany
+// still lives in German inside App.tsx and is used only as a lookup key: a
+// MutationObserver swaps every German text node and a few attributes
+// (placeholder, aria-label, title, alt) for its entry in es.json (default) or
+// ru.json (team, for understanding). The prerender (scripts/prerender.mjs)
+// applies es.json to the static HTML, so crawlers see Spanish.
 //
-// The choice is stored in localStorage; ?lang=ru / ?lang=de sets it too.
+// New copy should be written directly in Spanish. It then needs no es.json
+// entry; for Russian add it to ru.json with the Spanish text as key.
+//
+// The choice is stored in localStorage; ?lang=es / ?lang=ru sets it too.
 // ─────────────────────────────────────────────────────────────────────────────
-export type Lang = 'de' | 'ru'
+export type Lang = 'es' | 'ru'
 const STORAGE_KEY = 'rag-lang'
 
 export function getLang(): Lang {
-  if (typeof window === 'undefined') return 'de'
+  if (typeof window === 'undefined') return 'es'
   try {
     const q = new URLSearchParams(window.location.search).get('lang')
-    if (q === 'ru' || q === 'de') {
+    if (q === 'ru' || q === 'es') {
       localStorage.setItem(STORAGE_KEY, q)
       return q
     }
     const v = localStorage.getItem(STORAGE_KEY)
-    if (v === 'ru' || v === 'de') return v
+    if (v === 'ru' || v === 'es') return v
   } catch {
-    /* storage blocked — fall back to German */
+    /* storage blocked — fall back to Spanish */
   }
-  return 'de'
+  return 'es'
 }
 
 export function setLang(lang: Lang) {
@@ -43,11 +46,14 @@ export function setLang(lang: Lang) {
 
 /** Date locale for Intl formatting (booking calendar etc.). */
 export function dateLocale(): string {
-  return getLang() === 'ru' ? 'ru-RU' : 'de-DE'
+  return getLang() === 'ru' ? 'ru-RU' : 'es-ES'
 }
 
 // ── translator ───────────────────────────────────────────────────────────────
 let dict = new Map<string, string>()
+let lang: Lang = 'es'
+/** Prerender: Wörterbuch ohne DOM setzen (scripts/prerender.mjs → entry-server). */
+export function setDict(entries: Record<string, string>, l: Lang = 'es') { dict = new Map(Object.entries(entries)); lang = l; adminMode = false }
 const missing = new Set<string>()
 
 const norm = (s: string) => s.replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim()
@@ -131,14 +137,14 @@ function lookup(key: string): string | undefined {
 
 // Strings assembled at runtime from template literals.
 const patterns: [RegExp, (m: RegExpMatchArray) => string | undefined][] = [
-  [/^(.+) — einfach erklärt \| RAG Glossar$/, m => { const t = dict.get(m[1]); return t === undefined ? undefined : `${t} — простыми словами | RAG Глоссарий` }],
-  [/^(.+) \| RAG Ratgeber$/, m => { const t = dict.get(m[1]); return t === undefined ? undefined : `${t} | RAG Гид` }],
+  [/^(.+)(?: —|:) einfach erklärt \| RAG Glossar$/, m => { const t = dict.get(m[1]); return t === undefined ? undefined : lang === 'ru' ? `${t} — простыми словами | RAG Глоссарий` : `${t}: explicado de forma sencilla | Glosario RAG` }],
+  [/^(.+) \| RAG Ratgeber$/, m => { const t = dict.get(m[1]); return t === undefined ? undefined : lang === 'ru' ? `${t} | RAG Гид` : `${t} | Guía RAG` }],
   [/^(.+) \| RAG$/, m => { const t = dict.get(m[1]); return t === undefined ? undefined : `${t} | RAG` }],
-  [/^(\d+) Minuten Lesezeit$/, m => `${m[1]} мин. чтения`],
-  [/^Fallstudie (\d+)$/, m => `Кейс ${m[1]}`],
+  [/^(\d+) Minuten Lesezeit$/, m => lang === 'ru' ? `${m[1]} мин. чтения` : `${m[1]} min de lectura`],
+  [/^Fallstudie (\d+)$/, m => lang === 'ru' ? `Кейс ${m[1]}` : `Caso ${m[1]}`],
 ]
 
-function translateString(s: string): string | undefined {
+export function translateString(s: string): string | undefined {
   const key = norm(s)
   if (!key || !SRC_LETTERS().test(key)) return undefined
   const t = lookup(key)
@@ -208,12 +214,13 @@ function walk(root: Node) {
  */
 export async function startTranslator(): Promise<void> {
   if (typeof window === 'undefined') return
-  // Überall Deutsch als Original; Russisch nur auf Wunsch (Umschalter) für das Team in der Entwicklung.
+  // Website: Spanisch (es.json) als Standard, Russisch auf Wunsch (Umschalter) für das Team.
+  // Admin (/rag-intern): interne Oberfläche, immer Russisch (admin-ru.json).
   adminMode = isAdminPath()
-  const target = getLang() === 'ru' ? 'ru' : null
-  if (!target) return
+  const target: Lang = adminMode ? 'ru' : getLang()
+  lang = target
   try {
-    const mod = adminMode ? await import('./admin-ru.json') : await import('./ru.json')
+    const mod = adminMode ? await import('./admin-ru.json') : target === 'ru' ? await import('./ru.json') : await import('./es.json')
     dict = new Map(Object.entries(mod.default as Record<string, string>))
   } catch {
     return // chunk failed to load — show the original
@@ -224,7 +231,6 @@ export async function startTranslator(): Promise<void> {
     partsRe = new RegExp(`(?<![A-Za-zÄÖÜäöüß])(?:${keys.map(esc).join('|')})(?![A-Za-zÄÖÜäöüß])`, 'g')
   }
   const html = document.documentElement
-  const lang = target
   html.lang = lang
   const observer = new MutationObserver(muts => {
     for (const m of muts) {

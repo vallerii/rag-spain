@@ -8,7 +8,7 @@ import {
 } from './data'
 import AccountStep from './AccountStep'
 
-// /check — Onboarding nach der Unternehmenssuche. Drei Schritte:
+// /analisis — Onboarding nach der Unternehmenssuche. Drei Schritte:
 // 1 Unternehmen suchen (Trefferliste) → 2 Gefundenes prüfen und direkt korrigieren («Vollständige Analyse erhalten»)
 // → 3 Konto anlegen oder anmelden (E-Mail oder Google) → Kundenbereich, dort startet die Analyse.
 // Treffer wählen führt direkt zu Schritt 2. ?place=<id> öffnet Schritt 2, ?place=<id>&step=3 öffnet Schritt 3
@@ -129,7 +129,7 @@ function Findings({ place, found, draft, onDraft }: { place: Place; found: Sourc
       <ul style={{ listStyle: 'none', margin: '0 0 10px', padding: 0, display: 'grid', gap: 4 }}>
         {place.manual
           ? row(false, 'Kein Google-Unternehmensprofil: bei Google Maps erscheinen Sie nicht.')
-          : row(place.reviews >= 20 && (place.rating ?? 0) >= 4.2, <>Google-Profil: {place.rating !== null ? <>★ {place.rating.toLocaleString('de-DE', { minimumFractionDigits: 1 })} · </> : null}{place.reviews} Bewertungen</>)}
+          : row(place.reviews >= 20 && (place.rating ?? 0) >= 4.2, <>Google-Profil: {place.rating !== null ? <>★ {place.rating.toLocaleString('es-ES', { minimumFractionDigits: 1 })} · </> : null}{place.reviews} Bewertungen</>)}
         {!place.manual && row(!!place.phone, place.phone ? 'Telefon im Google-Profil angegeben' : 'Kein Telefon im Google-Profil angegeben')}
       </ul>
       <ul style={{ listStyle: 'none', margin: 0, padding: '16px 0 0', display: 'grid', gap: 18 }}>
@@ -158,7 +158,7 @@ function SelectedCompany({ place, loading, onChange }: { place: Place | null; lo
             <span style={{ display: 'block', fontWeight: 700, fontSize: 15.5, lineHeight: 1.3 }}>{place.name}</span>
             <span style={{ display: 'block', fontSize: 13, color: 'var(--muted)', lineHeight: 1.5 }}>
               {[place.category, place.address || place.city].filter(Boolean).join(' · ')}
-              {place.rating !== null && !place.manual ? ` · ★ ${place.rating.toLocaleString('de-DE', { minimumFractionDigits: 1 })} (${place.reviews})` : ''}
+              {place.rating !== null && !place.manual ? ` · ★ ${place.rating.toLocaleString('es-ES', { minimumFractionDigits: 1 })} (${place.reviews})` : ''}
             </span>
           </>
         )}
@@ -194,7 +194,7 @@ function NotListed({ query, nothingFound, startOpen = false, onManual }: { query
         <label style={{ fontSize: 13, fontWeight: 600 }}>Website (falls vorhanden)<input value={f.website} onChange={set('website')} placeholder="beispiel.de" inputMode="url" style={{ ...fieldStyle, marginTop: 6 }} /></label>
         <div style={{ gridColumn: '1 / -1', display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginTop: 6 }}>
           <button type="submit" className="btn btn-md btn-electric" disabled={!ok}>Ohne Google-Profil prüfen <span className="arw">→</span></button>
-          <a href="/start?from=check" className="ul" style={{ fontSize: 14, color: 'var(--electric)', fontWeight: 600 }}>Oder: 4 kurze Fragen statt Check →</a>
+          <a href="/empezar?from=check" className="ul" style={{ fontSize: 14, color: 'var(--electric)', fontWeight: 600 }}>Oder: 4 kurze Fragen statt Check →</a>
         </div>
       </form>
     </div>
@@ -205,7 +205,7 @@ export default function CheckPage() {
   useNoindex('Kostenloser Sichtbarkeits-Check | RAG')
   const params = new URLSearchParams(window.location.search)
   const initialPlace = params.get('place')
-  // Code aus dem Brief (QR-Code / Link): /check?c=ABC123 → Unternehmen ist schon ausgewählt.
+  // Code aus dem Brief (QR-Code / Link): /analisis?c=ABC123 → Unternehmen ist schon ausgewählt.
   const briefCode = (params.get('c') ?? '').trim().toUpperCase()
   const initialQ = params.get('q') ?? ''
   const returning = params.get('step') === '3'
@@ -262,7 +262,7 @@ export default function CheckPage() {
   const newSearch = (q: string) => {
     const sp = new URLSearchParams(window.location.search)
     sp.set('q', q); sp.delete('place'); sp.delete('manual')
-    history.replaceState(null, '', `/check?${sp.toString()}`)
+    history.replaceState(null, '', `/analisis?${sp.toString()}`)
     setManualMode(false); setStep('find'); setQuery(q)
   }
 
@@ -288,7 +288,7 @@ export default function CheckPage() {
     const sp = new URLSearchParams(window.location.search)
     sp.delete('place'); sp.delete('step')
     if (query) sp.set('q', query)
-    history.replaceState(null, '', `/check?${sp.toString()}`)
+    history.replaceState(null, '', `/analisis?${sp.toString()}`)
     setStep('find')
   }
 
@@ -321,7 +321,7 @@ export default function CheckPage() {
     if (!place) return loadingPlace ? 'Das Profil lädt noch, bitte einen Moment.' : 'Bitte wählen Sie zuerst Ihr Unternehmen.'
     // Diese Firma ist im Konto schon geprüft → keinen zweiten Check anlegen, den vorhandenen öffnen.
     const existing = await findMyCheck(place).catch(() => null)
-    if (existing) { window.location.href = `/kabinett?firma=${existing}&bereits=1`; return null }
+    if (existing) { window.location.href = `/area-cliente?firma=${existing}&bereits=1`; return null }
     const hadChecks = (await loadMyChecks().catch(() => [])).length > 0
     // Nicht länger als 4 s auf die Quellen warten — sonst leer anlegen und im Kundenbereich ergänzen.
     const empty: Source[] = SOURCE_ORDER.map(key => ({ key, value: '', found: false }))
@@ -335,7 +335,7 @@ export default function CheckPage() {
     if (!id) return 'Das Speichern hat nicht geklappt. Bitte versuchen Sie es noch einmal.'
     // Neues Konto (gerade angelegt) → Begrüßung; bestehendes Konto → Hinweis «weitere Firma hinzugefügt».
     const fresh = Date.now() - new Date(user.created_at).getTime() < 15 * 60 * 1000 && !hadChecks
-    window.location.href = `/kabinett?firma=${id}&${fresh ? 'welcome=1' : 'neu=1'}`
+    window.location.href = `/area-cliente?firma=${id}&${fresh ? 'welcome=1' : 'neu=1'}`
     return null
   }
 
@@ -343,7 +343,7 @@ export default function CheckPage() {
   const googleNext = place ? (() => {
     const sp = new URLSearchParams(window.location.search)
     sp.set('place', place.id); sp.set('step', '3'); sp.delete('c'); sp.delete('manual'); sp.delete('q')
-    return `/check?${sp.toString()}`
+    return `/analisis?${sp.toString()}`
   })() : undefined
   const keepDraftForGoogle = () => {
     if (!place) return
@@ -411,7 +411,7 @@ export default function CheckPage() {
               </div>
               <p style={{ fontSize: 14, lineHeight: 1.65, color: 'var(--muted)', margin: '26px 0 0' }}>
                 Ihr Unternehmen ist noch nicht bei Google?{' '}
-                <a href="/start?from=check" className="ul" style={{ color: 'var(--electric)', fontWeight: 600 }}>Beantworten Sie 4 kurze Fragen →</a>
+                <a href="/empezar?from=check" className="ul" style={{ color: 'var(--electric)', fontWeight: 600 }}>Beantworten Sie 4 kurze Fragen →</a>
               </p>
               <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--muted)', margin: '18px 0 0' }}>Kostenlos und unverbindlich. Den Bericht prüft ein Mensch aus unserem Team, nicht nur ein Tool.</p>
             </>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Logo, useNoindex } from './CheckPage'
 import { authErrorText, currentUser, getSupabase, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, type AuthError } from './data'
 
-// Anmeldung für Bestandskunden: /login · /passwort-vergessen · /passwort-neu
+// Anmeldung für Bestandskunden: /acceder · /recuperar-contrasena · /nueva-contrasena
 // Konto entsteht im Check (Schritt 3) — hier nur Anmelden und Passwort zurücksetzen.
 
 const field: React.CSSProperties = { width: '100%', padding: '12px 14px', border: '1px solid rgba(7,7,12,0.14)', borderRadius: 12, fontSize: 15, fontFamily: 'inherit', outline: 'none', color: 'var(--ink)', backgroundColor: '#fff' }
@@ -12,8 +12,8 @@ const labelSt: React.CSSProperties = { display: 'block', fontSize: 12.5, fontWei
 
 /** Nur interne Pfade als Weiterleitung zulassen. */
 function nextPath(): string {
-  const n = new URLSearchParams(window.location.search).get('next') || '/kabinett'
-  return n.startsWith('/') && !n.startsWith('//') ? n : '/kabinett'
+  const n = new URLSearchParams(window.location.search).get('next') || '/area-cliente'
+  return n.startsWith('/') && !n.startsWith('//') ? n : '/area-cliente'
 }
 
 function AuthShell({ eyebrow, title, sub, children }: { eyebrow: string; title: string; sub?: string; children: React.ReactNode }) {
@@ -102,7 +102,7 @@ export function LoginPage() {
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10 }}>
             <label style={labelSt} htmlFor="li-password">Passwort</label>
-            <a href={`/passwort-vergessen${email.trim() ? `?email=${encodeURIComponent(email.trim())}` : ''}`} className="ul" style={{ fontSize: 12.5, color: 'var(--electric)', fontWeight: 600 }}>Passwort vergessen?</a>
+            <a href={`/recuperar-contrasena${email.trim() ? `?email=${encodeURIComponent(email.trim())}` : ''}`} className="ul" style={{ fontSize: 12.5, color: 'var(--electric)', fontWeight: 600 }}>Passwort vergessen?</a>
           </div>
           <PasswordInput id="li-password" value={password} onChange={setPassword} autoComplete="current-password" />
         </div>
@@ -139,7 +139,7 @@ export function ForgotPasswordPage() {
   if (sent) {
     return (
       <AuthShell eyebrow="Passwort vergessen" title="Bitte prüfen Sie Ihr Postfach" sub="Wenn es für diese Adresse ein Konto gibt, haben wir einen Link zum Zurücksetzen geschickt. Der Link ist nur kurze Zeit gültig, schauen Sie auch im Spam-Ordner nach.">
-        <a href="/login" className="btn btn-lg btn-outline-light" style={{ width: '100%' }}>Zurück zur Anmeldung</a>
+        <a href="/acceder" className="btn btn-lg btn-outline-light" style={{ width: '100%' }}>Zurück zur Anmeldung</a>
       </AuthShell>
     )
   }
@@ -153,7 +153,7 @@ export function ForgotPasswordPage() {
           {busy ? 'Wird gesendet…' : 'Link senden'} <span className="arw">→</span>
         </button>
       </form>
-      <p style={{ fontSize: 14, margin: '20px 0 0' }}><a href="/login" className="ul" style={{ color: 'var(--muted)' }}>← Zurück zur Anmeldung</a></p>
+      <p style={{ fontSize: 14, margin: '20px 0 0' }}><a href="/acceder" className="ul" style={{ color: 'var(--muted)' }}>← Zurück zur Anmeldung</a></p>
     </AuthShell>
   )
 }
@@ -195,20 +195,20 @@ export function ResetPasswordPage() {
     setBusy(false)
     if (err) { setError(err); return }
     setDone(true)
-    setTimeout(() => { window.location.href = '/kabinett' }, 1500)
+    setTimeout(() => { window.location.href = '/area-cliente' }, 1500)
   }
 
   if (ready === 'invalid') {
     return (
       <AuthShell eyebrow="Passwort zurücksetzen" title="Der Link ist abgelaufen" sub="Links zum Zurücksetzen gelten nur kurze Zeit und nur einmal. Fordern Sie einfach einen neuen an.">
-        <a href="/passwort-vergessen" className="btn btn-lg btn-electric" style={{ width: '100%' }}>Neuen Link anfordern <span className="arw">→</span></a>
+        <a href="/recuperar-contrasena" className="btn btn-lg btn-electric" style={{ width: '100%' }}>Neuen Link anfordern <span className="arw">→</span></a>
       </AuthShell>
     )
   }
   if (done) {
     return (
       <AuthShell eyebrow="Passwort zurücksetzen" title="Passwort geändert" sub="Wir leiten Sie zu Ihrem Kundenbereich weiter …">
-        <a href="/kabinett" className="btn btn-lg btn-electric" style={{ width: '100%' }}>Zum Kundenbereich <span className="arw">→</span></a>
+        <a href="/area-cliente" className="btn btn-lg btn-electric" style={{ width: '100%' }}>Zum Kundenbereich <span className="arw">→</span></a>
       </AuthShell>
     )
   }

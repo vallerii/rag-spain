@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { orderTotal, saveOrderDetails, type OrderDetails, type OrderRow } from './data'
 
-// Kundenbereich für Kunden mit Paket-Anfrage (/anfrage → Konto → hier).
+// Kundenbereich für Kunden mit Paket-Anfrage (/solicitud → Konto → hier).
 // 1. Schritt im Kundenbereich: Angaben zum Unternehmen und zum Problem.
 // Danach: Status der Anfrage («wir melden uns») und die gewählten Leistungen.
 
@@ -70,7 +70,7 @@ export default function OrderPanel({ order, onChange, defaults }: {
 
   const s = order.status
   const steps: [boolean, string, string][] = [
-    [true, 'Anfrage eingegangen', new Date(order.created_at).toLocaleDateString('de-DE')],
+    [true, 'Anfrage eingegangen', new Date(order.created_at).toLocaleDateString('es-ES')],
     [!!order.details, 'Angaben zum Unternehmen', order.details ? 'Vollständig' : 'Wartet auf Ihre Angaben'],
     [s !== 'new', 'Erstgespräch', s !== 'new' ? 'Erledigt' : 'Wir melden uns innerhalb eines Werktags'],
     [s === 'active' || s === 'closed', 'Start der Umsetzung', s === 'active' || s === 'closed' ? 'Läuft' : 'Nach dem Gespräch'],

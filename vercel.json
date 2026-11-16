@@ -5,7 +5,7 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/(check|kabinett|anfrage|login|passwort-vergessen|passwort-neu|rag-intern)(/.*)?",
+      "source": "/(analisis|area-cliente|solicitud|acceder|recuperar-contrasena|nueva-contrasena|rag-intern)(/.*)?",
       "destination": "/app.html"
     }
   ],
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "source": "/(check|kabinett|anfrage|login|passwort-vergessen|passwort-neu)(/.*)?",
+      "source": "/(analisis|area-cliente|solicitud|acceder|recuperar-contrasena|nueva-contrasena)(/.*)?",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -79,28 +79,123 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/services/reviews",
-      "destination": "/services/google-maps-business-profile",
+      "source": "/servicios/resenas",
+      "destination": "/servicios/google-maps-perfil-empresa",
       "permanent": true
     },
     {
-      "source": "/services/local-citations",
-      "destination": "/services/ai-search-optimization",
+      "source": "/servicios/directorios-locales",
+      "destination": "/servicios/busqueda-ia",
       "permanent": true
     },
     {
-      "source": "/services/google-meta-ads",
-      "destination": "/services",
+      "source": "/servicios/anuncios-google-meta",
+      "destination": "/servicios",
       "permanent": true
     },
     {
-      "source": "/services/offline-advertising",
-      "destination": "/services",
+      "source": "/servicios/publicidad-offline",
+      "destination": "/servicios",
       "permanent": true
     },
     {
       "source": "/index.html",
       "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/servicios",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai-search-optimization",
+      "destination": "/servicios/busqueda-ia",
+      "permanent": true
+    },
+    {
+      "source": "/services/google-maps-business-profile",
+      "destination": "/servicios/google-maps-perfil-empresa",
+      "permanent": true
+    },
+    {
+      "source": "/services/website-google-search",
+      "destination": "/servicios/web-y-google-search",
+      "permanent": true
+    },
+    {
+      "source": "/services/social-media",
+      "destination": "/servicios/redes-sociales",
+      "permanent": true
+    },
+    {
+      "source": "/preise",
+      "destination": "/precios",
+      "permanent": true
+    },
+    {
+      "source": "/ratgeber",
+      "destination": "/guia",
+      "permanent": true
+    },
+    {
+      "source": "/ratgeber/:slug*",
+      "destination": "/guia",
+      "permanent": true
+    },
+    {
+      "source": "/glossar",
+      "destination": "/glosario",
+      "permanent": true
+    },
+    {
+      "source": "/glossar/:slug*",
+      "destination": "/glosario",
+      "permanent": true
+    },
+    {
+      "source": "/start",
+      "destination": "/empezar",
+      "permanent": true
+    },
+    {
+      "source": "/impressum",
+      "destination": "/aviso-legal",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutz",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/agb",
+      "destination": "/condiciones",
+      "permanent": true
+    },
+    {
+      "source": "/check",
+      "destination": "/analisis",
+      "permanent": true
+    },
+    {
+      "source": "/kabinett",
+      "destination": "/area-cliente",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "/acceder",
+      "permanent": true
+    },
+    {
+      "source": "/anfrage",
+      "destination": "/solicitud",
+      "permanent": true
+    },
+    {
+      "source": "/passwort-vergessen",
+      "destination": "/recuperar-contrasena",
       "permanent": true
     }
   ]

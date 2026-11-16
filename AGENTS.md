@@ -1,5 +1,7 @@
 # figma-make-app
 
+> **ВАЖНО:** перед любой работой прочитай `TODO.md` в корне проекта — там текущий список задач до запуска RAG Spain и правила работы с переводами (испанский — основной язык, RU — для команды).
+
 React + Vite + Tailwind CSS project running inside Figma Make.
 
 ## Development Server
